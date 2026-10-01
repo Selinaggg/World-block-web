@@ -1,0 +1,136 @@
+PASS 1: Generate a structurally correct world image in the VERSION2 visual direction.
+
+Input roles:
+- Image 1 is the control map generated from the captured WorldBlocks arrangement. It defines layout, broad biome placement, low-detail background terrain, and elemental relationships only.
+- Image 2 is VERSION2.jpeg or a replacement style reference. Use it for visual style only: bright low-poly palette, faceted terrain simplification, symbol language, building design, and overall map finish. Do not copy its island/sea composition unless the generated board is water-dominant.
+
+Layout rules:
+- Follow the approximate positions, proportions, transitions, and high-influence unit regions from Image 1.
+- Do not copy the flat control-map colors, hard polygon borders, visible grid, or heatmap appearance from Image 1.
+- Low-influence/unplaced areas are not empty void. The low-influence background is fire-dominant: barren scorched ground, ash plain, dry volcanic soil, or muted wasteland; placed unit regions become richer terrain features on top. Do not make it ocean. Water units should appear only as small lakes, springs, pools, canals, or rivers within the wasteland.
+- Low-influence background terrain should not be a perfectly flat solid color. Add subtle broad low-poly facets, gentle terrain undulation, and small tonal variation, while keeping it sparse and low-detail.
+- Placed-unit regions should contain richer details, structures, habitats, terrain symbols, and feature clusters than unplaced regions.
+- Stack height should read as elevation: ridges, highlands, cliffs, peaks, layered slopes, or raised plateaus.
+- The layout should remain recognizable, but transitions between placed-unit regions and the base terrain must be soft, irregular, eroded, feathered, and map-like.
+- Avoid hard island cutouts, black void boundaries, sticker-like silhouettes, copied pixel stair-steps, and rigid mask edges.
+
+Control-map translation rules:
+- Image 1 is a semantic mask, not final artwork. Never copy its raw blue, brown, red, green, teal, or ochre blobs directly into the generated image.
+- Translate each colored region into low-poly terrain materials, shoreline bands, slopes, paths, structures, vegetation, or water features that match VERSION2's palette.
+- Remove visible control-map seams. No flat pasted color patches, no hard mask borders, no unprocessed dark blue or dark brown areas.
+- Where a control region touches the background, create an environmental transition: shoreline, grass-to-dirt gradient, slope, sand bank, wetland edge, rocky edge, or sparse vegetation.
+- Water features must have believable continuity. A river or canal should connect to a lake, pond, spring, wetland, sea, delta, waterfall, culvert, or continue off-map with a visible mouth; it must not simply stop at a region edge or image boundary.
+- If water is not the dominant background, make water a local lake, pond, wetland, river, or canal embedded in land, not a copied blue island-shaped blob.
+
+World layering rules:
+- Treat earth, water, and fire as the broad natural terrain foundation; treat animal as smaller ecological overlays and map symbols.
+- Do not add towns, roads, bridges, factories, farms, houses, civic buildings, or engineered infrastructure unless human units are present.
+
+VERSION2 style target:
+- Match VERSION2.jpeg as the primary visual style reference.
+- Use a flat 2.5D illustrated civilisation-map look.
+- Use an editorial infographic style with clean, readable map symbols.
+- Use top-down or slightly angled world-map perspective, not first-person scenery.
+- Use simplified geometric terrain, stylised terrain patches, and clear region silhouettes.
+- Use simplified block-like or diagrammatic buildings, roads, bridges, fields, rivers, factories, and civic infrastructure.
+- Use a bright, vivid low-poly palette close to the reference image: clear olive greens, golden ochres, sandy browns, bright lake blues, turquoise water transitions, and crisp readable highlights.
+- Increase color clarity and local contrast compared with a gray/desaturated map. The final image should look fresh, clean, and legible at a glance.
+- Avoid dark navy/black backgrounds, harsh saturated primary colors, neon accents, gloomy roguelike colors, or high-contrast fantasy-map darkness.
+- Keep lighting simple, with minimal shadows and no cinematic drama.
+- Keep the map spacious, tidy, playful, and designed.
+- Prefer sparse representative symbol clusters over dense repeated texture fills.
+- Forests should be small tree groups, settlements should be a few spaced buildings, and industrial areas should be one or two clear structures.
+- Do not make it photorealistic, anime, pixel art, Dwarf Fortress style, dark roguelike terrain, or cinematic concept art.
+
+Density and readability control:
+Treat trees, buildings, rocks, factories, farms, paths, and animals as sparse map
+symbols, not dense texture fills. Leave visible breathing space between terrain
+features. The final image should feel clean, curated, spacious, and readable like an
+editorial 2.5D map.
+Low-influence background terrain may have subtle low-poly facets, gentle Perlin-noise
+height variation, and broad tonal patches, but it must remain lower-detail and calmer
+than placed-unit regions.
+
+Semantic rules to preserve:
+- Water = rivers, lakes, wetlands, canals or water systems.
+- Fire = burnt land, lava cracks, furnaces, smoke, heat or disaster zones.
+- Earth = plains, forests, hills, mountains, rocks, farmland potential or stable terrain.
+- Human = settlements, roads, bridges, farms, ports, mines, factories, dams, ruins or civic infrastructure.
+- Human-overlapped areas must clearly show human activity transforming the landscape.
+- Animal = ecological life, habitat potential, nesting zones, burrows, migration paths, and sparse wildlife traces.
+- Animal should first create habitat/ecological zones, then infer a few representative animals from the environment.
+- Keep animal signs subtle and sparse; do not overcrowd the map with many animals.
+
+World logic prompt:
+Use the attached control map image as the spatial layout reference. Preserve the approximate position, scale, and transitions of every colored high-influence biome region. Do not draw visible grid borders. Do not make a chart. Create a natural top-down map.
+
+Control map legend:
+- muted background color #9f7045 means low-detail base terrain: barren scorched ground, ash plain, dry volcanic soil, or muted wasteland; placed unit regions become richer terrain features on top
+- brown means earth as natural terrain base: soil, hills, rocky ground, stone, mountain ridges
+- blue means water as natural terrain base: lakes, rivers, basins, wetlands
+- red or orange means fire as natural terrain base: lava, scorched land, volcanic cracks, heat
+- green is a small animal life overlay on top of the natural base: tracks, dens, nests, trails, grazing pockets
+- teal means water terrain base with animal life overlay: wetland habitat, watering holes, marsh life
+- olive means earth terrain base with animal life overlay: wild grassland, dens, burrows, forests, grazing pockets
+- dark red means fire terrain base with animal life overlay: burned wilderness, ash forest, dangerous lairs
+- gray means water + fire interaction: steam rocks, obsidian, cooled lava, rocky shore
+- pale highlights mean higher stacked terrain: ridges, highlands, cliffs, peaks, raised plateaus
+
+World source data:
+- The source is a captured WorldBlocks arrangement, from manual placement or normalized physical input.
+- Horizontal positions are continuously mapped to the reference terrain domain, without snapping.
+- Every hardware slot can contain a vertical stack of units. Stack height primarily controls terrain elevation: higher stacks create ridges, highlands, cliffs, peaks, or raised plateaus.
+- Offset L0.5 slots blend into the surrounding 4x4 base cells.
+- Empty hardware slots become the broad low-detail background terrain: barren scorched ground, ash plain, dry volcanic soil, or muted wasteland; placed unit regions become richer terrain features on top.
+- Placed units create richer islands, districts, habitats, terrain patches, or feature clusters on top of that background.
+- If the background is earth-dominant, do not make the whole map an island in the sea; water units become local lakes, ponds, wetlands, canals, or rivers.
+- If the background is water-dominant, placed unit regions may become islands or shore features.
+- The generated world should not have a hard black void or cutout boundary around placed-unit influence.
+- Earth, water, and fire are base natural elements. They generate the broad terrain foundation first.
+- Animal is a higher-order life element. It does not create broad terrain by itself; it only adds smaller ecological traces on top of the natural foundation.
+- Animal areas must occupy less area than nearby natural terrain elements, even when animal units are present.
+- Detected unit types in this board state: animal, earth, fire.
+- Current detected unit count: 7.
+
+Control-map translation rule:
+- The attached control map is a semantic mask, not final artwork. Do not copy raw blue, brown, red, green, teal, or ochre blobs directly into the generated image.
+- Translate control-map colors into finished low-poly terrain materials, shorelines, slopes, paths, structures, vegetation, water, or landforms.
+- Remove visible seams between control regions. No flat pasted color patches, no hard mask borders, no unprocessed dark blue or dark brown areas.
+- If water reaches a region edge, continue it logically into a lake, pond, river, wetland, delta, culvert, waterfall, or off-map mouth. Do not let rivers or canals simply disappear at a boundary.
+
+Background-region rule:
+- Low-influence areas shown as the muted background color should become barren scorched ground, ash plain, dry volcanic soil, or muted wasteland; placed unit regions become richer terrain features on top.
+- Keep low-influence background regions mostly plain and low-detail, with no creature marks, dense texture, roads, or structures.
+- Keep background regions visually quiet, broad, and barren compared with placed-unit regions, but not perfectly flat: add subtle low-poly facets, gentle Perlin-noise terrain undulation, and small tonal patches.
+- Background detail must stay low complexity; placed-unit regions must still be clearly richer and more information-dense.
+- Avoid hard clipped island edges, black void edges, sticker-like outlines, and pixel stair-steps. Blend placed-unit regions softly into the base terrain.
+
+
+Construction rule:
+- Do not include artificial, inhabited, engineered, or constructed features of any kind.
+- The map must read as natural terrain and animal habitat only.
+
+Layered Terrain Grammar:
+- The control map defines spatial placement and influence. The layered terrain grammar defines how stacked, adjacent, and sequential elements should be interpreted semantically.
+- Base world: fire.
+- Grammar summary: Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds. Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland. Horizontal expansion: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat.
+- Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland.
+- Horizontal features: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland.
+- Vertical features: none.
+- Mixed stack features: none.
+- Human outcomes: none.
+- Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat.
+- Animal species: none.
+- Failed habitat: False.
+
+Regional biome instructions:
+- central region: natural terrain base fire (lava, scorched land, volcanic cracks, hot fire terrain); no life overlay; stack elevation 1.0; feature fire-shaped lava, scorched land, volcanic cracks, or heated rock; control color #d56f3d; natural terrain ratios {'fire': 1.0}; life overlay ratios {}.
+- central region: natural terrain base fire (lava, scorched land, volcanic cracks, hot fire terrain); no life overlay; stack elevation 1.0; feature fire-shaped lava, scorched land, volcanic cracks, or heated rock; control color #d56f3d; natural terrain ratios {'fire': 1.0}; life overlay ratios {}.
+- east: natural terrain base fire (lava, scorched land, volcanic cracks, hot fire terrain); no life overlay; stack elevation 1.0; feature fire-shaped lava, scorched land, volcanic cracks, or heated rock; control color #d56f3d; natural terrain ratios {'fire': 1.0}; life overlay ratios {}.
+- central region: no broad natural terrain base; life overlay animal (wild habitat, animal trails, nests, dens, grazing fields, forests); stack elevation 1.375; feature very small life-marked area with no broad natural terrain base; small animal traces such as tracks, dens, nests, grazing marks, or habitat pockets; control color #71853e; natural terrain ratios {}; life overlay ratios {'animal': 1.0}.
+- central region: natural terrain base earth (soil, hills, rocks, grassland, mountain ridges); no life overlay; stack elevation 1.0; feature earth-shaped ground, hills, rock, grassland, or mountain ridges; control color #a98645; natural terrain ratios {'earth': 1.0}; life overlay ratios {}.
+- central region: natural terrain base earth (soil, hills, rocks, grassland, mountain ridges); no life overlay; stack elevation 1.0; feature earth-shaped ground, hills, rock, grassland, or mountain ridges; control color #a98645; natural terrain ratios {'earth': 1.0}; life overlay ratios {}.
+- east: natural terrain base fire (lava, scorched land, volcanic cracks, hot fire terrain); no life overlay; stack elevation 1.0; feature fire-shaped lava, scorched land, volcanic cracks, or heated rock; control color #d56f3d; natural terrain ratios {'fire': 1.0}; life overlay ratios {}.
+
+Style target:
+Render this as a bright low-poly 2.5D illustrated map with clean faceted terrain planes: simple geometric landforms, sparse symbolic natural features, vivid olive greens, golden ochres, sandy browns, bright lake blues, and turquoise water, clear color separation, crisp local contrast, orthographic/isometric map feeling, no labels, no UI panels, no text. The image should feel like a designed low-poly infographic map, not a realistic landscape and not a colored heatmap. It should preserve the control map layout while replacing flat control colors with simple low-poly terrain surfaces and soft transitions.

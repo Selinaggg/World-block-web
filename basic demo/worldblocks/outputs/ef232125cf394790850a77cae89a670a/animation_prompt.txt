@@ -1,0 +1,52 @@
+Animate the attached generated_world.png as a short low-poly map animation.
+
+Locked camera requirement:
+- Use a fully locked camera. Keep the exact same framing throughout the whole video. Only animate local scene elements. No panning, zooming, dolly, orbit, tilt, or reframing.
+- No camera movement. No panning. No zooming. No dolly. No orbit. No tilt. No reframing. No full-image drifting. No scene translation.
+- Keep the exact same top-down / isometric map framing from the first frame to the final frame.
+- The whole image must remain spatially registered to the starting frame; only local elements inside the map may move.
+
+Preservation rules:
+- Preserve the exact composition, layout, terrain shapes, colors, region silhouettes, and VERSION2-style low-poly illustrated map look.
+- Do not translate, scale, rotate, tilt, drift, crop, or reframe the map. No cinematic camera moves, no cuts, no scene redesign.
+- Do not add labels, UI, text, captions, new large objects, new buildings, or dramatic transformations.
+- The output should feel like the existing still map gently coming alive.
+
+Motion style controls:
+- Requested animation style: Auto from Terrain Grammar. Choose only the motion cues that match the terrain grammar and visible regions.
+- Requested motion strength: Subtle. Keep motion very subtle and loop-like. The image should almost feel like a living illustration.
+
+Layered terrain grammar summary:
+- Base world: fire.
+- Summary: Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds. Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland. Horizontal expansion: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat.
+- Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland.
+- Horizontal features: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland.
+- Vertical features: none.
+- Mixed features: none.
+- Human outcomes: none.
+- Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat.
+- Animal species: none.
+- Failed habitat: False.
+
+Region cues:
+- central region: terrain fire, life none, feature fire-shaped lava, scorched land, volcanic cracks, or heated rock.
+- central region: terrain fire, life none, feature fire-shaped lava, scorched land, volcanic cracks, or heated rock.
+- east: terrain fire, life none, feature fire-shaped lava, scorched land, volcanic cracks, or heated rock.
+- central region: terrain none, life animal, feature very small life-marked area with no broad natural terrain base; small animal traces such as tracks, dens, nests, grazing marks, or habitat pockets.
+- central region: terrain earth, life none, feature earth-shaped ground, hills, rock, grassland, or mountain ridges.
+- central region: terrain earth, life none, feature earth-shaped ground, hills, rock, grassland, or mountain ridges.
+- east: terrain fire, life none, feature fire-shaped lava, scorched land, volcanic cracks, or heated rock.
+
+Animation rules:
+- Water, lake, or sea: gentle ripples, flowing water, and shoreline waves.
+- Waterfall or island waterfall: visible waterfall or spring stream flowing into surrounding water.
+- River or canal: slow directional water flow.
+- Fire, lava, or volcano: lava glow, smoke, embers, and heat shimmer.
+- Hot spring, steam, or obsidian: rising steam and soft thermal shimmer.
+- Forest or earth: trees gently sway, grass moves, and small clouds or dust drift.
+- Settlement or human survival: chimney smoke, tiny lights, small boats, water wheel, windmill, carts, or subtle road activity.
+- Failed human habitat: tombstones, abandoned camp, drifting dust, no living settlement motion.
+- Animals on suitable terrain: sparse symbolic motion such as deer walking, birds flying, fish ripples, ducks gliding, goats on mountains, or crabs and turtles on coasts.
+- Animals on lethal terrain: no living animals; show only bones, abandoned nests, fading tracks, fleeing traces, or crows/vultures circling.
+
+Final output: a short animated preview that preserves the still map with a fully locked camera and adds only terrain-appropriate local micro-motion.

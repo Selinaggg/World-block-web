@@ -1,0 +1,12 @@
+basic demo — WorldBlocks 当前版本存档
+
+包含完整网站源码、3D 与首页素材、服务器、测试、项目说明、已有生成结果，以及实体连接演示服务。
+首页背景为右侧 60% 宽度、上下贴边、左侧渐变。
+
+恢复：解压到独立目录，进入 worldblocks，安装 requirements.txt 中的依赖后运行：
+python3 server/app.py --port 5189
+访问 http://127.0.0.1:5189/ （5189 可避免与正在运行的开发版冲突）。
+
+图像生成沿用本机 GEMINI_API_KEY 配置；密钥未打包。独立恢复时请通过环境变量或 worldblocks/.env 配置。
+浏览器内尚未保存的编辑状态、内存历史和本机 Python 环境不属于此文件存档。
+ARCHIVE.json 记录所有归档文件的 SHA-256，便于核验。

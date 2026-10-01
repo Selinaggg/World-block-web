@@ -1,0 +1,36 @@
+{
+  "id": "200741f0f48f445fa9ced1b1bc9458b3",
+  "status": "complete",
+  "stage": "complete",
+  "title": "Your possible world",
+  "description": "这个世界由当前布局中的 5 个 unit 生成，覆盖 2 个高度层，最高达到 Z=0.5。水、火、土先生成自然地形基底：土 2、水 1、火 1。动物和人作为高阶生命元素，只在自然基底上形成较小范围的生态痕迹或文明改造：人 1。实体结构主要停留在低层，地貌更接近底面分布。主要区域关系为：central region 的自然基底为 土，生命覆盖为 无，形成 earth-shaped ground, hills, rock, grassland, or mountain ridges；central region 的自然基底为 水，生命覆盖为 无，形成 water-shaped basins, rivers, lakes, or wetlands；central region 的自然基底为 空/未塑形，生命覆盖为 人，形成 very small life-marked area with no broad natural terrain base; limited human modifications such as paths, huts, workshops, farms, walls, or ruins；central region 的自然基底为 土，生命覆盖为 无，形成 earth-shaped ground, hills, rock, grassland, or mountain ridges。综合地貌特征包括：earth-shaped ground, hills, rock, grassland, or mountain ridges、water-shaped basins, rivers, lakes, or wetlands、very small life-marked area with no broad natural terrain base; limited human modifications such as paths, huts, workshops, farms, walls, or ruins、fire-shaped lava, scorched land, volcanic cracks, or heated rock。",
+  "twoPass": true,
+  "videoEnabled": false,
+  "controlMapUrl": "/api/worlds/200741f0f48f445fa9ced1b1bc9458b3/control_map.png",
+  "imageUrl": "/api/worlds/200741f0f48f445fa9ced1b1bc9458b3/generated_world.png",
+  "error": null,
+  "excludedSupports": 0,
+  "terrainGrammar": {
+    "base_world": "land",
+    "base_element": "earth",
+    "base_description": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas.",
+    "terrain_features": [
+      "1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land",
+      "1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land"
+    ],
+    "vertical_features": [],
+    "horizontal_features": [
+      "2 adjacent earth unit(s) expand into broader land, plains, hills, or highland"
+    ],
+    "mixed_features": [],
+    "human_outcomes": [
+      "human (1.50,1.50,0.5): habitable edge (plains, grassland, hills, or riverbank edge); show sparse settlement, paths, bridge, camp, farm edge, port, or hot-spring shelter"
+    ],
+    "animal_outcomes": [],
+    "animal_species": [],
+    "failed_habitat": false,
+    "prompt_summary": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas. Terrain features: 1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land; 1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land. Horizontal expansion: 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Human outcomes: human (1.50,1.50,0.5): habitable edge (plains, grassland, hills, or riverbank edge); show sparse settlement, paths, bridge, camp, farm edge, port, or hot-spring shelter."
+  },
+  "animationPromptUrl": "/api/worlds/200741f0f48f445fa9ced1b1bc9458b3/animation_prompt.txt",
+  "pass1Url": "/api/worlds/200741f0f48f445fa9ced1b1bc9458b3/generated_world_pass1.png"
+}

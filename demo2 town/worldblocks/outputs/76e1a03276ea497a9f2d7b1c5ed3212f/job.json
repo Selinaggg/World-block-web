@@ -1,0 +1,32 @@
+{
+  "id": "76e1a03276ea497a9f2d7b1c5ed3212f",
+  "status": "complete",
+  "stage": "complete",
+  "title": "Your possible world",
+  "description": "这个世界由当前布局中的 3 个 unit 生成，覆盖 1 个高度层，最高达到 Z=0.0。水、火、土先生成自然地形基底：土 1、水 1、火 1。动物作为高阶生命元素，只在自然基底上形成较小范围的生态痕迹：无。实体结构主要停留在低层，地貌更接近底面分布。主要区域关系为：central region 的自然基底为 火，生命覆盖为 无，形成 fire-shaped lava, scorched land, volcanic cracks, or heated rock；central region 的自然基底为 水，生命覆盖为 无，形成 water-shaped basins, rivers, lakes, or wetlands；central region 的自然基底为 土，生命覆盖为 无，形成 earth-shaped ground, hills, rock, grassland, or mountain ridges。综合地貌特征包括：fire-shaped lava, scorched land, volcanic cracks, or heated rock、water-shaped basins, rivers, lakes, or wetlands、earth-shaped ground, hills, rock, grassland, or mountain ridges。",
+  "twoPass": true,
+  "videoEnabled": false,
+  "controlMapUrl": "/api/worlds/76e1a03276ea497a9f2d7b1c5ed3212f/control_map.png",
+  "imageUrl": "/api/worlds/76e1a03276ea497a9f2d7b1c5ed3212f/generated_world.png",
+  "error": null,
+  "excludedSupports": 0,
+  "terrainGrammar": {
+    "base_world": "land",
+    "base_element": "earth",
+    "base_description": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas.",
+    "terrain_features": [
+      "1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land",
+      "1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land"
+    ],
+    "vertical_features": [],
+    "horizontal_features": [],
+    "mixed_features": [],
+    "human_outcomes": [],
+    "animal_outcomes": [],
+    "animal_species": [],
+    "failed_habitat": false,
+    "prompt_summary": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas. Terrain features: 1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land; 1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land."
+  },
+  "animationPromptUrl": "/api/worlds/76e1a03276ea497a9f2d7b1c5ed3212f/animation_prompt.txt",
+  "pass1Url": "/api/worlds/76e1a03276ea497a9f2d7b1c5ed3212f/generated_world_pass1.png"
+}

@@ -1,0 +1,263 @@
+{
+  "regions": [
+    {
+      "id": "P-27",
+      "region": "central region",
+      "x": 1.320865054872555,
+      "y": 1.3106184269920202,
+      "kind": "base",
+      "dominant": "fire",
+      "dominant_label": "火",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "fire",
+      "terrain_dominant_label": "火",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 1.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 1.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "fire-shaped lava, scorched land, volcanic cracks, or heated rock",
+      "control_color": "#d56f3d"
+    },
+    {
+      "id": "P-25",
+      "region": "central region",
+      "x": 1.6785547119754787,
+      "y": 1.3106184269920202,
+      "kind": "base",
+      "dominant": "fire",
+      "dominant_label": "火",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "fire",
+      "terrain_dominant_label": "火",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 1.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 1.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "fire-shaped lava, scorched land, volcanic cracks, or heated rock",
+      "control_color": "#d56f3d"
+    },
+    {
+      "id": "P-29",
+      "region": "east",
+      "x": 2.0398033975841416,
+      "y": 1.3106184269920202,
+      "kind": "base",
+      "dominant": "fire",
+      "dominant_label": "火",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "fire",
+      "terrain_dominant_label": "火",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 1.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 1.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "fire-shaped lava, scorched land, volcanic cracks, or heated rock",
+      "control_color": "#d56f3d"
+    },
+    {
+      "id": "P-31",
+      "region": "central region",
+      "x": 1.5009985847697442,
+      "y": 1.4976871188677743,
+      "kind": "base",
+      "dominant": "animal",
+      "dominant_label": "动物",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": null,
+      "terrain_dominant_label": "",
+      "life_dominant": "animal",
+      "life_dominant_label": "动物",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 0.0
+      },
+      "life_ratios": {
+        "animal": 1.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 0.0,
+        "animal": 1.0
+      },
+      "elevation": 1.375,
+      "feature": "very small life-marked area with no broad natural terrain base; small animal traces such as tracks, dens, nests, grazing marks, or habitat pockets",
+      "control_color": "#71853e"
+    },
+    {
+      "id": "P-28",
+      "region": "central region",
+      "x": 1.320865054872555,
+      "y": 1.6906295453535727,
+      "kind": "base",
+      "dominant": "earth",
+      "dominant_label": "土",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "earth",
+      "terrain_dominant_label": "土",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 1.0,
+        "water": 0.0,
+        "fire": 0.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 1.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 0.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "earth-shaped ground, hills, rock, grassland, or mountain ridges",
+      "control_color": "#a98645"
+    },
+    {
+      "id": "P-26",
+      "region": "central region",
+      "x": 1.6785547119754787,
+      "y": 1.6906295453535727,
+      "kind": "base",
+      "dominant": "earth",
+      "dominant_label": "土",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "earth",
+      "terrain_dominant_label": "土",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 1.0,
+        "water": 0.0,
+        "fire": 0.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 1.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 0.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "earth-shaped ground, hills, rock, grassland, or mountain ridges",
+      "control_color": "#a98645"
+    },
+    {
+      "id": "P-30",
+      "region": "east",
+      "x": 2.0398033975841416,
+      "y": 1.6906295453535727,
+      "kind": "base",
+      "dominant": "fire",
+      "dominant_label": "火",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "fire",
+      "terrain_dominant_label": "火",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 1.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 1.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "fire-shaped lava, scorched land, volcanic cracks, or heated rock",
+      "control_color": "#d56f3d"
+    }
+  ],
+  "terrain_grammar": {
+    "base_world": "fire",
+    "base_element": "fire",
+    "base_description": "Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds.",
+    "terrain_features": [
+      "2 earth unit(s) read as black rock, volcanic crust, or volcanic highland"
+    ],
+    "vertical_features": [],
+    "horizontal_features": [
+      "4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone",
+      "2 adjacent earth unit(s) expand into broader land, plains, hills, or highland"
+    ],
+    "mixed_features": [],
+    "human_outcomes": [],
+    "animal_outcomes": [
+      "animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat"
+    ],
+    "animal_species": [],
+    "failed_habitat": false,
+    "prompt_summary": "Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds. Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland. Horizontal expansion: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat."
+  }
+}

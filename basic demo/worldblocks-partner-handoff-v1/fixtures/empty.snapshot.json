@@ -1,0 +1,347 @@
+{
+  "connected": true,
+  "hello": {
+    "boot_id": "mock-session-1",
+    "recovery_mode": false
+  },
+  "topology": {
+    "topology_id": "mock-two-tiles",
+    "boot_id": "mock-session-1",
+    "module_count": 2,
+    "max_stack": 7,
+    "tracking_capacity": 16,
+    "columns": [
+      {
+        "id": "L0-r0-c0",
+        "layer": "L0",
+        "row": 0,
+        "col": 0,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r0-c1",
+        "layer": "L0",
+        "row": 0,
+        "col": 1,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r0-c2",
+        "layer": "L0",
+        "row": 0,
+        "col": 2,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r0-c3",
+        "layer": "L0",
+        "row": 0,
+        "col": 3,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r1-c0",
+        "layer": "L0",
+        "row": 1,
+        "col": 0,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r1-c1",
+        "layer": "L0",
+        "row": 1,
+        "col": 1,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r1-c2",
+        "layer": "L0",
+        "row": 1,
+        "col": 2,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r1-c3",
+        "layer": "L0",
+        "row": 1,
+        "col": 3,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r0-c0",
+        "layer": "L0.5",
+        "row": 0,
+        "col": 0,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r0-c1",
+        "layer": "L0.5",
+        "row": 0,
+        "col": 1,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r0-c2",
+        "layer": "L0.5",
+        "row": 0,
+        "col": 2,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r0-c3",
+        "layer": "L0.5",
+        "row": 0,
+        "col": 3,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r1-c0",
+        "layer": "L0.5",
+        "row": 1,
+        "col": 0,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r1-c1",
+        "layer": "L0.5",
+        "row": 1,
+        "col": 1,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r1-c2",
+        "layer": "L0.5",
+        "row": 1,
+        "col": 2,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r1-c3",
+        "layer": "L0.5",
+        "row": 1,
+        "col": 3,
+        "module": 0,
+        "port": "A0",
+        "enabled": true
+      },
+      {
+        "id": "L0-r2-c0",
+        "layer": "L0",
+        "row": 2,
+        "col": 0,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r2-c1",
+        "layer": "L0",
+        "row": 2,
+        "col": 1,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r2-c2",
+        "layer": "L0",
+        "row": 2,
+        "col": 2,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r2-c3",
+        "layer": "L0",
+        "row": 2,
+        "col": 3,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r3-c0",
+        "layer": "L0",
+        "row": 3,
+        "col": 0,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r3-c1",
+        "layer": "L0",
+        "row": 3,
+        "col": 1,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r3-c2",
+        "layer": "L0",
+        "row": 3,
+        "col": 2,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0-r3-c3",
+        "layer": "L0",
+        "row": 3,
+        "col": 3,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r2-c0",
+        "layer": "L0.5",
+        "row": 2,
+        "col": 0,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r2-c1",
+        "layer": "L0.5",
+        "row": 2,
+        "col": 1,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r2-c2",
+        "layer": "L0.5",
+        "row": 2,
+        "col": 2,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r2-c3",
+        "layer": "L0.5",
+        "row": 2,
+        "col": 3,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r3-c0",
+        "layer": "L0.5",
+        "row": 3,
+        "col": 0,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r3-c1",
+        "layer": "L0.5",
+        "row": 3,
+        "col": 1,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r3-c2",
+        "layer": "L0.5",
+        "row": 3,
+        "col": 2,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      },
+      {
+        "id": "L0.5-r3-c3",
+        "layer": "L0.5",
+        "row": 3,
+        "col": 3,
+        "module": 1,
+        "port": "A1",
+        "enabled": true
+      }
+    ]
+  },
+  "module_layout": {
+    "version": 1,
+    "module_count": 2,
+    "grid_rows": 1,
+    "grid_cols": 2,
+    "slots": [
+      "A0",
+      "A1"
+    ]
+  },
+  "board": {},
+  "codebook": {
+    "codes": [
+      {
+        "id": "C0",
+        "unit": "type_0"
+      },
+      {
+        "id": "C1",
+        "unit": "type_1"
+      },
+      {
+        "id": "C2",
+        "unit": "type_2"
+      },
+      {
+        "id": "C3",
+        "unit": "type_3"
+      },
+      {
+        "id": "C4",
+        "unit": "type_4"
+      },
+      {
+        "id": "C5",
+        "unit": "type_5"
+      }
+    ]
+  },
+  "active_faults": {},
+  "recovery": {
+    "status": "idle"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1293,
+      "sha256": "c4f48f8c0b25815242fa017075d03f0695897e32b9cee1a9670029e5b16c1553"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 972,
+      "sha256": "36448b057b466fecd45124de9837398d3e8eec7b3055c0adea05afaf4af2b484"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 267,
+      "sha256": "0b2c160eced5754b5cc885384d5e2fbf69257ad1a5d6013f160b035f5bacb9af"
+    },
+    {
+      "path": "package.json",
+      "bytes": 177,
+      "sha256": "79a0119c79f3326cc87015638ded27778a0521076c9c208f0fa9c882901309ec"
+    },
+    {
+      "path": "docs/interface.md",
+      "bytes": 3488,
+      "sha256": "7e6ecb52cb58d7504d759d040ce9a12eaf17823e3697cdb07335df8cc973af90"
+    },
+    {
+      "path": "docs/integration.md",
+      "bytes": 2217,
+      "sha256": "64fc9c5f8ca4dc014bb18201d564d2e3c13a32a8e76db7a3d5f26630e169e957"
+    },
+    {
+      "path": "client/worldblocks-client.mjs",
+      "bytes": 4321,
+      "sha256": "9abe7314c5ed8e70a74ec97fdc3cb5c4c76b4b70f39e4f3ef0a4aa1f1a8726f8"
+    },
+    {
+      "path": "examples/subscribe.mjs",
+      "bytes": 821,
+      "sha256": "10294e4d8c90d324e91e096f234e9e50b8e049088390159fad18cc5ccc6b8614"
+    },
+    {
+      "path": "fixtures/empty.snapshot.json",
+      "bytes": 6403,
+      "sha256": "c09128df4bc9e23fa1423214c19a3f3600f654a0f4ae4101a62921f265b6c8d9"
+    },
+    {
+      "path": "mock/server.py",
+      "bytes": 2979,
+      "sha256": "49c9dbece8efa123f17fba597e4ea94e6289f0d26cd0b4d3a2fd0250fc10ad6b"
+    },
+    {
+      "path": "tests/client.test.mjs",
+      "bytes": 3612,
+      "sha256": "9ad97537b3f291694aecbefabbbeb292dd30ea2290a5cb4b2d210deb3193ffbe"
+    },
+    {
+      "path": "tests/test_mock.py",
+      "bytes": 1722,
+      "sha256": "d690f499074d914c2904434436c97b6b8988460a4e27bbbbcf9fbddba0a1ef97"
+    }
+  ]
+}

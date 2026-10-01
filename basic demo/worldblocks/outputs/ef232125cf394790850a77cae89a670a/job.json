@@ -1,0 +1,36 @@
+{
+  "id": "ef232125cf394790850a77cae89a670a",
+  "status": "complete",
+  "stage": "complete",
+  "title": "Your possible world",
+  "description": "这个世界由当前布局中的 7 个 unit 生成，覆盖 2 个高度层，最高达到 Z=0.5。水、火、土先生成自然地形基底：火 4、土 2。动物作为高阶生命元素，只在自然基底上形成较小范围的生态痕迹：动物 1。实体结构主要停留在低层，地貌更接近底面分布。主要区域关系为：central region 的自然基底为 火，生命覆盖为 无，形成 fire-shaped lava, scorched land, volcanic cracks, or heated rock；central region 的自然基底为 火，生命覆盖为 无，形成 fire-shaped lava, scorched land, volcanic cracks, or heated rock；east 的自然基底为 火，生命覆盖为 无，形成 fire-shaped lava, scorched land, volcanic cracks, or heated rock；central region 的自然基底为 空/未塑形，生命覆盖为 动物，形成 very small life-marked area with no broad natural terrain base; small animal traces such as tracks, dens, nests, grazing marks, or habitat pockets。综合地貌特征包括：fire-shaped lava, scorched land, volcanic cracks, or heated rock、very small life-marked area with no broad natural terrain base; small animal traces such as tracks, dens, nests, grazing marks, or habitat pockets、earth-shaped ground, hills, rock, grassland, or mountain ridges。",
+  "twoPass": true,
+  "videoEnabled": false,
+  "controlMapUrl": "/api/worlds/ef232125cf394790850a77cae89a670a/control_map.png",
+  "imageUrl": "/api/worlds/ef232125cf394790850a77cae89a670a/generated_world.png",
+  "error": null,
+  "excludedSupports": 0,
+  "terrainGrammar": {
+    "base_world": "fire",
+    "base_element": "fire",
+    "base_description": "Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds.",
+    "terrain_features": [
+      "2 earth unit(s) read as black rock, volcanic crust, or volcanic highland"
+    ],
+    "vertical_features": [],
+    "horizontal_features": [
+      "4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone",
+      "2 adjacent earth unit(s) expand into broader land, plains, hills, or highland"
+    ],
+    "mixed_features": [],
+    "human_outcomes": [],
+    "animal_outcomes": [
+      "animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat"
+    ],
+    "animal_species": [],
+    "failed_habitat": false,
+    "prompt_summary": "Fire dominates the bottom layer, so the base world is volcanic wasteland, lava field, scorched plain, or ash land. Small earth becomes black rock or volcanic highland. Small water becomes steam pools, hot springs, cooled lava edges, or boiling ponds. Terrain features: 2 earth unit(s) read as black rock, volcanic crust, or volcanic highland. Horizontal expansion: 4 adjacent fire unit(s) expand into larger scorched land, lava belt, volcanic field, or disaster zone; 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Animal outcomes: animal (1.50,1.50,0.5): lethal terrain (central scorched wasteland); show bones, abandoned nests, broken tracks, migration traces, fleeing animals, or dead habitat."
+  },
+  "animationPromptUrl": "/api/worlds/ef232125cf394790850a77cae89a670a/animation_prompt.txt",
+  "pass1Url": "/api/worlds/ef232125cf394790850a77cae89a670a/generated_world_pass1.png"
+}

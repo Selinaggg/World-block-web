@@ -1,0 +1,322 @@
+{
+  "snapshot": {
+    "worldState": {
+      "version": 1,
+      "inputMode": "web",
+      "blocks": [
+        {
+          "id": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+          "sourceObjectName": "____01*_(4)",
+          "type": "water",
+          "position": {
+            "x": 0.5951823732515957,
+            "y": 0.6823625562570099,
+            "z": -0.610792208459304
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+          "sourceObjectName": "____01*_(4)",
+          "type": "fire",
+          "position": {
+            "x": 0.5951823732515957,
+            "y": 0.6823625562570099,
+            "z": 0.6111659928548281
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_59e4cffd-8a46-41cc-8958-57145da2f133",
+          "sourceObjectName": "____01*_(4)",
+          "type": "earth",
+          "position": {
+            "x": -0.5971164837581506,
+            "y": 0.6823625562570099,
+            "z": -0.610792208459304
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b",
+          "sourceObjectName": "____01*_(4)",
+          "type": "earth",
+          "position": {
+            "x": -0.5971164837581506,
+            "y": 0.6823625562570099,
+            "z": 0.6111659928548281
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+          "sourceObjectName": "____01*_(4)",
+          "type": "human",
+          "position": {
+            "x": -0.010060237298905872,
+            "y": 1.2911018839101613,
+            "z": 0.00190076813599116
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 2
+        }
+      ]
+    },
+    "analysis": {
+      "counts": {
+        "water": 1,
+        "fire": 1,
+        "earth": 2,
+        "human": 1,
+        "animal": 0
+      },
+      "dominantTypes": [
+        "earth"
+      ],
+      "heightRange": {
+        "min": 1,
+        "max": 2
+      },
+      "highestBlocks": [
+        "added_0c961429-3f46-4e6b-beb2-6a1795780e71"
+      ],
+      "occupiedLevels": [
+        1,
+        2
+      ],
+      "total": 5,
+      "neighbourPairs": 10,
+      "averageNeighbours": 4,
+      "nearestTypePairs": [
+        {
+          "types": [
+            "earth",
+            "human"
+          ],
+          "a": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b",
+          "b": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+          "distance": 1.0423064422664399,
+          "horizontal": 0.8460727808873846,
+          "vertical": 0.6087393276531514,
+          "distanceInDiameters": 0.8663717244389073,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "fire",
+            "human"
+          ],
+          "a": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+          "b": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+          "distance": 1.0526567820088806,
+          "horizontal": 0.8587914366583315,
+          "vertical": 0.6087393276531514,
+          "distanceInDiameters": 0.8749749924679221,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "human",
+            "water"
+          ],
+          "a": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+          "b": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+          "distance": 1.054644428339144,
+          "horizontal": 0.8612266259209529,
+          "vertical": 0.6087393276531514,
+          "distanceInDiameters": 0.8766271367019925,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "earth",
+            "water"
+          ],
+          "a": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+          "b": "added_59e4cffd-8a46-41cc-8958-57145da2f133",
+          "distance": 1.1922988570097464,
+          "horizontal": 1.1922988570097464,
+          "vertical": 0,
+          "distanceInDiameters": 0.9910463707275234,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "earth",
+            "fire"
+          ],
+          "a": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+          "b": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b",
+          "distance": 1.1922988570097464,
+          "horizontal": 1.1922988570097464,
+          "vertical": 0,
+          "distanceInDiameters": 0.9910463707275234,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "fire",
+            "water"
+          ],
+          "a": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+          "b": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+          "distance": 1.2219582013141321,
+          "horizontal": 1.2219582013141321,
+          "vertical": 0,
+          "distanceInDiameters": 1.015699405793529,
+          "relation": "Near"
+        }
+      ],
+      "normalizedPositions": [
+        {
+          "id": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+          "x": 0.5595182373251596,
+          "z": 0.43687280899734005,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+          "x": 0.5595182373251596,
+          "z": 0.5635431817845242,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_59e4cffd-8a46-41cc-8958-57145da2f133",
+          "x": 0.44028835162418495,
+          "z": 0.43687280899734005,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b",
+          "x": 0.44028835162418495,
+          "z": 0.5635431817845242,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+          "x": 0.4989939762701094,
+          "z": 0.5003856588361899,
+          "heightLevel": 2
+        }
+      ],
+      "thresholds": {
+        "near": 1.9249131297611985,
+        "medium": 3.6092121183022474,
+        "far": 7.218424236604495
+      },
+      "diameter": 1.203070706100749
+    },
+    "options": {
+      "twoPass": true
+    }
+  },
+  "positions": [
+    {
+      "id": "added_03fff69d-45e9-4d11-9967-b069b24a0c11",
+      "slot": 0,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.6785547119754787,
+      "y": 1.3106184269920202,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.3106184269920202,
+      "col": 1.6785547119754787,
+      "n": 4,
+      "compact": "water (1.68,1.31,0.0)",
+      "label": "added_03fff69d-45e9-4d11-9967-b069b24a0c11"
+    },
+    {
+      "id": "added_ab2da51f-95cd-49e2-8468-90fda731dc18",
+      "slot": 1,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.6785547119754787,
+      "y": 1.6906295453535727,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.6906295453535727,
+      "col": 1.6785547119754787,
+      "n": 4,
+      "compact": "fire (1.68,1.69,0.0)",
+      "label": "added_ab2da51f-95cd-49e2-8468-90fda731dc18"
+    },
+    {
+      "id": "added_59e4cffd-8a46-41cc-8958-57145da2f133",
+      "slot": 2,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.320865054872555,
+      "y": 1.3106184269920202,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.3106184269920202,
+      "col": 1.320865054872555,
+      "n": 4,
+      "compact": "earth (1.32,1.31,0.0)",
+      "label": "added_59e4cffd-8a46-41cc-8958-57145da2f133"
+    },
+    {
+      "id": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b",
+      "slot": 3,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.320865054872555,
+      "y": 1.6906295453535727,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.6906295453535727,
+      "col": 1.320865054872555,
+      "n": 4,
+      "compact": "earth (1.32,1.69,0.0)",
+      "label": "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b"
+    },
+    {
+      "id": "added_0c961429-3f46-4e6b-beb2-6a1795780e71",
+      "slot": 4,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.496981928810328,
+      "y": 1.5011569765085697,
+      "z": 0.5,
+      "stack_index": 0.5,
+      "row": 1.5011569765085697,
+      "col": 1.496981928810328,
+      "n": 4,
+      "compact": "human (1.50,1.50,0.5)",
+      "label": "added_0c961429-3f46-4e6b-beb2-6a1795780e71"
+    }
+  ],
+  "pieces": {
+    "added_03fff69d-45e9-4d11-9967-b069b24a0c11": "water",
+    "added_ab2da51f-95cd-49e2-8468-90fda731dc18": "fire",
+    "added_59e4cffd-8a46-41cc-8958-57145da2f133": "earth",
+    "added_fd10b53f-f34f-4fd9-a372-b73a58e22d1b": "earth",
+    "added_0c961429-3f46-4e6b-beb2-6a1795780e71": "human"
+  },
+  "excluded": []
+}

@@ -1,0 +1,50 @@
+Animate the attached generated_world.png as a short low-poly map animation.
+
+Locked camera requirement:
+- Use a fully locked camera. Keep the exact same framing throughout the whole video. Only animate local scene elements. No panning, zooming, dolly, orbit, tilt, or reframing.
+- No camera movement. No panning. No zooming. No dolly. No orbit. No tilt. No reframing. No full-image drifting. No scene translation.
+- Keep the exact same top-down / isometric map framing from the first frame to the final frame.
+- The whole image must remain spatially registered to the starting frame; only local elements inside the map may move.
+
+Preservation rules:
+- Preserve the exact composition, layout, terrain shapes, colors, region silhouettes, and VERSION2-style low-poly illustrated map look.
+- Do not translate, scale, rotate, tilt, drift, crop, or reframe the map. No cinematic camera moves, no cuts, no scene redesign.
+- Do not add labels, UI, text, captions, new large objects, new buildings, or dramatic transformations.
+- The output should feel like the existing still map gently coming alive.
+
+Motion style controls:
+- Requested animation style: Auto from Terrain Grammar. Choose only the motion cues that match the terrain grammar and visible regions.
+- Requested motion strength: Subtle. Keep motion very subtle and loop-like. The image should almost feel like a living illustration.
+
+Layered terrain grammar summary:
+- Base world: land.
+- Summary: Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas. Terrain features: 1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land; 1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land. Horizontal expansion: 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland. Human outcomes: human (1.50,1.50,0.5): habitable edge (plains, grassland, hills, or riverbank edge); show sparse settlement, paths, bridge, camp, farm edge, port, or hot-spring shelter.
+- Terrain features: 1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land; 1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land.
+- Horizontal features: 2 adjacent earth unit(s) expand into broader land, plains, hills, or highland.
+- Vertical features: none.
+- Mixed features: none.
+- Human outcomes: human (1.50,1.50,0.5): habitable edge (plains, grassland, hills, or riverbank edge); show sparse settlement, paths, bridge, camp, farm edge, port, or hot-spring shelter.
+- Animal outcomes: none.
+- Animal species: none.
+- Failed habitat: False.
+
+Region cues:
+- central region: terrain earth, life none, feature earth-shaped ground, hills, rock, grassland, or mountain ridges.
+- central region: terrain water, life none, feature water-shaped basins, rivers, lakes, or wetlands.
+- central region: terrain none, life human, feature very small life-marked area with no broad natural terrain base; limited human modifications such as paths, huts, workshops, farms, walls, or ruins.
+- central region: terrain earth, life none, feature earth-shaped ground, hills, rock, grassland, or mountain ridges.
+- central region: terrain fire, life none, feature fire-shaped lava, scorched land, volcanic cracks, or heated rock.
+
+Animation rules:
+- Water, lake, or sea: gentle ripples, flowing water, and shoreline waves.
+- Waterfall or island waterfall: visible waterfall or spring stream flowing into surrounding water.
+- River or canal: slow directional water flow.
+- Fire, lava, or volcano: lava glow, smoke, embers, and heat shimmer.
+- Hot spring, steam, or obsidian: rising steam and soft thermal shimmer.
+- Forest or earth: trees gently sway, grass moves, and small clouds or dust drift.
+- Settlement or human survival: chimney smoke, tiny lights, small boats, water wheel, windmill, carts, or subtle road activity.
+- Failed human habitat: tombstones, abandoned camp, drifting dust, no living settlement motion.
+- Animals on suitable terrain: sparse symbolic motion such as deer walking, birds flying, fish ripples, ducks gliding, goats on mountains, or crabs and turtles on coasts.
+- Animals on lethal terrain: no living animals; show only bones, abandoned nests, fading tracks, fleeing traces, or crows/vultures circling.
+
+Final output: a short animated preview that preserves the still map with a fully locked camera and adds only terrain-appropriate local micro-motion.

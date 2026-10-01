@@ -1,0 +1,21 @@
+{
+  "source": "WorldBlocks_Test",
+  "imported": "2026-09-30",
+  "sha256": {
+    "world_logic.py": "fbced68e3830be929ca7a7391abecd13d5a4b95c3b8daaf825df8cb9139d8238",
+    "terrain_grammar.py": "d8575327d29cd050e37bf2f6922a39878614cb3ccf59b201dba0754afb6795d0",
+    "image_api.py": "5d5ea43cc88c7851ca7f246e7a134d78ef0a9739447659399bb1249a3d9e2143",
+    "animation_logic.py": "edfa371f7d32db82e8b9582bca89ef38921c6978992641ef2130a7093dfa5109",
+    "animation_api.py": "ab253d62ab664469a3843be4939783c39cd04f89e35f7db3ac0cfe741ecc513c",
+    "app.py": "377a4f11660d09ffdcc054441fe2dcf6bc02058b368a310937f211aafbe289e4",
+    "VERSION2.jpeg": "c8818ca87e0416c3d671e93fbcda194bb597d81c1480fbbe8796fad0b9949d6d"
+  },
+  "adaptations": [
+    "world_logic accepts per-request continuous positions and adds corresponding influence nodes; no global board mutation",
+    "Inactive influence nodes omitted from rendering, without changing pixel math",
+    "Streamlit style prompt constants and pure functions extracted into style_prompts.py",
+    "Source descriptions generalized for both manual and physical inputs",
+    "Relative Python imports for isolated package use",
+    "Video provider retained but never called by the integrated server"
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "snapshot": {
+    "worldState": {
+      "version": 1,
+      "inputMode": "web",
+      "blocks": [
+        {
+          "id": "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1",
+          "sourceObjectName": "____01*_(4)",
+          "type": "fire",
+          "position": {
+            "x": 0.5951823732515957,
+            "y": 0.6823625562570099,
+            "z": -0.610792208459304
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63",
+          "sourceObjectName": "____01*_(4)",
+          "type": "earth",
+          "position": {
+            "x": 0.5951823732515957,
+            "y": 0.6823625562570099,
+            "z": 0.6111659928548281
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_80033ac0-7c8a-4374-a37c-5350f4f2bdb2",
+          "sourceObjectName": "____01*_(4)",
+          "type": "fire",
+          "position": {
+            "x": -0.5971164837581506,
+            "y": 0.6823625562570099,
+            "z": -0.610792208459304
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_823630a2-ec91-4ade-90c5-595b913fd6a4",
+          "sourceObjectName": "____01*_(4)",
+          "type": "earth",
+          "position": {
+            "x": -0.5971164837581506,
+            "y": 0.6823625562570099,
+            "z": 0.6111659928548281
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_22498144-5513-47d7-9a65-93aa7b1bcf06",
+          "sourceObjectName": "____01*_(4)",
+          "type": "fire",
+          "position": {
+            "x": 1.7993446586138067,
+            "y": 0.6823625562570099,
+            "z": -0.610792208459304
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_213eb370-27be-434d-89df-caf99ff68f1d",
+          "sourceObjectName": "____01*_(4)",
+          "type": "fire",
+          "position": {
+            "x": 1.7993446586138067,
+            "y": 0.6823625562570099,
+            "z": 0.6111659928548281
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 1
+        },
+        {
+          "id": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176",
+          "sourceObjectName": "____01*_(4)",
+          "type": "animal",
+          "position": {
+            "x": 0.003328615899147125,
+            "y": 1.2911018839101613,
+            "z": -0.00925685540892951
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "heightLevel": 2
+        }
+      ]
+    },
+    "analysis": {
+      "counts": {
+        "water": 0,
+        "fire": 4,
+        "earth": 2,
+        "human": 0,
+        "animal": 1
+      },
+      "dominantTypes": [
+        "fire"
+      ],
+      "heightRange": {
+        "min": 1,
+        "max": 2
+      },
+      "highestBlocks": [
+        "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176"
+      ],
+      "occupiedLevels": [
+        1,
+        2
+      ],
+      "total": 7,
+      "neighbourPairs": 15,
+      "averageNeighbours": 4.285714285714286,
+      "nearestTypePairs": [
+        {
+          "types": [
+            "animal",
+            "fire"
+          ],
+          "a": "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1",
+          "b": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176",
+          "distance": 1.0405283369967686,
+          "horizontal": 0.8438813015238872,
+          "vertical": 0.6087393276531514,
+          "distanceInDiameters": 0.8648937520631738,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "animal",
+            "earth"
+          ],
+          "a": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63",
+          "b": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176",
+          "distance": 1.0515602454312998,
+          "horizontal": 0.857447013371628,
+          "vertical": 0.6087393276531514,
+          "distanceInDiameters": 0.8740635443111178,
+          "relation": "Near"
+        },
+        {
+          "types": [
+            "earth",
+            "fire"
+          ],
+          "a": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63",
+          "b": "added_213eb370-27be-434d-89df-caf99ff68f1d",
+          "distance": 1.204162285362211,
+          "horizontal": 1.204162285362211,
+          "vertical": 0,
+          "distanceInDiameters": 1.0009073276042102,
+          "relation": "Near"
+        }
+      ],
+      "normalizedPositions": [
+        {
+          "id": "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1",
+          "x": 0.5595182373251596,
+          "z": 0.43687280899734005,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63",
+          "x": 0.5595182373251596,
+          "z": 0.5635431817845242,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_80033ac0-7c8a-4374-a37c-5350f4f2bdb2",
+          "x": 0.44028835162418495,
+          "z": 0.43687280899734005,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_823630a2-ec91-4ade-90c5-595b913fd6a4",
+          "x": 0.44028835162418495,
+          "z": 0.5635431817845242,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_22498144-5513-47d7-9a65-93aa7b1bcf06",
+          "x": 0.6799344658613806,
+          "z": 0.43687280899734005,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_213eb370-27be-434d-89df-caf99ff68f1d",
+          "x": 0.6799344658613806,
+          "z": 0.5635431817845242,
+          "heightLevel": 1
+        },
+        {
+          "id": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176",
+          "x": 0.5003328615899147,
+          "z": 0.49922903962259146,
+          "heightLevel": 2
+        }
+      ],
+      "thresholds": {
+        "near": 1.9249131297611985,
+        "medium": 3.6092121183022474,
+        "far": 7.218424236604495
+      },
+      "diameter": 1.203070706100749
+    },
+    "options": {
+      "twoPass": true
+    }
+  },
+  "positions": [
+    {
+      "id": "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1",
+      "slot": 0,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.6785547119754787,
+      "y": 1.3106184269920202,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.3106184269920202,
+      "col": 1.6785547119754787,
+      "n": 4,
+      "compact": "fire (1.68,1.31,0.0)",
+      "label": "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1"
+    },
+    {
+      "id": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63",
+      "slot": 1,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.6785547119754787,
+      "y": 1.6906295453535727,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.6906295453535727,
+      "col": 1.6785547119754787,
+      "n": 4,
+      "compact": "earth (1.68,1.69,0.0)",
+      "label": "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63"
+    },
+    {
+      "id": "added_80033ac0-7c8a-4374-a37c-5350f4f2bdb2",
+      "slot": 2,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.320865054872555,
+      "y": 1.3106184269920202,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.3106184269920202,
+      "col": 1.320865054872555,
+      "n": 4,
+      "compact": "fire (1.32,1.31,0.0)",
+      "label": "added_80033ac0-7c8a-4374-a37c-5350f4f2bdb2"
+    },
+    {
+      "id": "added_823630a2-ec91-4ade-90c5-595b913fd6a4",
+      "slot": 3,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.320865054872555,
+      "y": 1.6906295453535727,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.6906295453535727,
+      "col": 1.320865054872555,
+      "n": 4,
+      "compact": "earth (1.32,1.69,0.0)",
+      "label": "added_823630a2-ec91-4ade-90c5-595b913fd6a4"
+    },
+    {
+      "id": "added_22498144-5513-47d7-9a65-93aa7b1bcf06",
+      "slot": 4,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 2.0398033975841416,
+      "y": 1.3106184269920202,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.3106184269920202,
+      "col": 2.0398033975841416,
+      "n": 4,
+      "compact": "fire (2.04,1.31,0.0)",
+      "label": "added_22498144-5513-47d7-9a65-93aa7b1bcf06"
+    },
+    {
+      "id": "added_213eb370-27be-434d-89df-caf99ff68f1d",
+      "slot": 5,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 2.0398033975841416,
+      "y": 1.6906295453535727,
+      "z": 0.0,
+      "stack_index": 0.0,
+      "row": 1.6906295453535727,
+      "col": 2.0398033975841416,
+      "n": 4,
+      "compact": "fire (2.04,1.69,0.0)",
+      "label": "added_213eb370-27be-434d-89df-caf99ff68f1d"
+    },
+    {
+      "id": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176",
+      "slot": 6,
+      "hardware_layer": "L0",
+      "kind": "base",
+      "x": 1.5009985847697442,
+      "y": 1.4976871188677743,
+      "z": 0.5,
+      "stack_index": 0.5,
+      "row": 1.4976871188677743,
+      "col": 1.5009985847697442,
+      "n": 4,
+      "compact": "animal (1.50,1.50,0.5)",
+      "label": "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176"
+    }
+  ],
+  "pieces": {
+    "added_5a3f2028-e9e7-4176-9c34-176dd281fdc1": "fire",
+    "added_3c0bc3d1-815a-4c81-83f2-d6a968715e63": "earth",
+    "added_80033ac0-7c8a-4374-a37c-5350f4f2bdb2": "fire",
+    "added_823630a2-ec91-4ade-90c5-595b913fd6a4": "earth",
+    "added_22498144-5513-47d7-9a65-93aa7b1bcf06": "fire",
+    "added_213eb370-27be-434d-89df-caf99ff68f1d": "fire",
+    "added_a56c022a-a00c-4b22-9ed1-dcdcb6bd4176": "animal"
+  },
+  "excluded": []
+}

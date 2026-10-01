@@ -1,0 +1,123 @@
+{
+  "regions": [
+    {
+      "id": "P-27",
+      "region": "central region",
+      "x": 1.320865054872555,
+      "y": 1.3106184269920202,
+      "kind": "base",
+      "dominant": "fire",
+      "dominant_label": "火",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "fire",
+      "terrain_dominant_label": "火",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 0.0,
+        "fire": 1.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 1.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "fire-shaped lava, scorched land, volcanic cracks, or heated rock",
+      "control_color": "#d56f3d"
+    },
+    {
+      "id": "P-25",
+      "region": "central region",
+      "x": 1.6785547119754787,
+      "y": 1.3106184269920202,
+      "kind": "base",
+      "dominant": "water",
+      "dominant_label": "水",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "water",
+      "terrain_dominant_label": "水",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 0.0,
+        "water": 1.0,
+        "fire": 0.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 0.0,
+        "human": 0.0,
+        "water": 1.0,
+        "fire": 0.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "water-shaped basins, rivers, lakes, or wetlands",
+      "control_color": "#42aee0"
+    },
+    {
+      "id": "P-26",
+      "region": "central region",
+      "x": 1.6785547119754787,
+      "y": 1.6906295453535727,
+      "kind": "base",
+      "dominant": "earth",
+      "dominant_label": "土",
+      "secondary": null,
+      "secondary_label": "",
+      "terrain_dominant": "earth",
+      "terrain_dominant_label": "土",
+      "life_dominant": null,
+      "life_dominant_label": "",
+      "terrain_ratios": {
+        "earth": 1.0,
+        "water": 0.0,
+        "fire": 0.0
+      },
+      "life_ratios": {
+        "animal": 0.0,
+        "human": 0.0
+      },
+      "ratios": {
+        "earth": 1.0,
+        "human": 0.0,
+        "water": 0.0,
+        "fire": 0.0,
+        "animal": 0.0
+      },
+      "elevation": 1.0,
+      "feature": "earth-shaped ground, hills, rock, grassland, or mountain ridges",
+      "control_color": "#a98645"
+    }
+  ],
+  "terrain_grammar": {
+    "base_world": "land",
+    "base_element": "earth",
+    "base_description": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas.",
+    "terrain_features": [
+      "1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land",
+      "1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land"
+    ],
+    "vertical_features": [],
+    "horizontal_features": [],
+    "mixed_features": [],
+    "human_outcomes": [],
+    "animal_outcomes": [],
+    "animal_species": [],
+    "failed_habitat": false,
+    "prompt_summary": "Earth dominates the bottom layer, so the base world is land. Small water becomes lakes, ponds, rivers, or wetlands. Small fire becomes scorched land, volcanic cracks, or burnt areas. Terrain features: 1 fire unit(s) read as scorched land, volcanic cracks, or burnt areas inside land; 1 water unit(s) read as lakes, ponds, rivers, or wetlands inside land."
+  }
+}
