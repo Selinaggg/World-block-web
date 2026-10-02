@@ -1,0 +1,11 @@
+{
+  "id": "demo3-particle",
+  "title": "Particle",
+  "description": "Turn five forces into a dream you can step inside.",
+  "order": 3,
+  "status": "ready",
+  "hardware": "pending",
+  "root": "worldblocks",
+  "entry": "/dream.html",
+  "port": 5193
+}

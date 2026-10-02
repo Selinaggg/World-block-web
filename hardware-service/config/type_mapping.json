@@ -1,0 +1,13 @@
+{
+  "id": "terrain-default-v1",
+  "version": 1,
+  "electrical_codebook_id": "e96-2026-07-19",
+  "mapping": {
+    "C0": "earth",
+    "C1": "fire",
+    "C2": "animal",
+    "C3": "human",
+    "C4": "water",
+    "C5": "spacer"
+  }
+}

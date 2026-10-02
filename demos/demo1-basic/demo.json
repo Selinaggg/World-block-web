@@ -1,0 +1,11 @@
+{
+  "id": "demo1-basic",
+  "title": "Basic",
+  "description": "Explore how position, type and stacking shape a world.",
+  "order": 1,
+  "status": "ready",
+  "hardware": "available",
+  "root": "worldblocks",
+  "entry": "/#studio",
+  "port": 5191
+}

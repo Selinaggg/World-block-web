@@ -1,0 +1,12 @@
+.venv/
+runtime/
+**/runtime/
+**/__pycache__/
+*.pyc
+**/node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+**/outputs/
+.DS_Store
+

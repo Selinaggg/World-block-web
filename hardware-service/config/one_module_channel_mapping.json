@@ -1,0 +1,83 @@
+{
+  "id": "shared-module-order-calibrated-2026-07-24",
+  "version": 1,
+  "module_count": 1,
+  "layers": [
+    {
+      "id": "L0",
+      "rows": 2,
+      "cols": 4
+    },
+    {
+      "id": "L0.5",
+      "rows": 2,
+      "cols": 4
+    }
+  ],
+  "columns": [
+    {
+      "column_id": "L0-r0-c0",
+      "channel": 1
+    },
+    {
+      "column_id": "L0-r0-c1",
+      "channel": 5
+    },
+    {
+      "column_id": "L0-r0-c2",
+      "channel": 9
+    },
+    {
+      "column_id": "L0-r0-c3",
+      "channel": 13
+    },
+    {
+      "column_id": "L0-r1-c0",
+      "channel": 0
+    },
+    {
+      "column_id": "L0-r1-c1",
+      "channel": 4
+    },
+    {
+      "column_id": "L0-r1-c2",
+      "channel": 8
+    },
+    {
+      "column_id": "L0-r1-c3",
+      "channel": 12
+    },
+    {
+      "column_id": "L0.5-r0-c0",
+      "channel": 3
+    },
+    {
+      "column_id": "L0.5-r0-c1",
+      "channel": 7
+    },
+    {
+      "column_id": "L0.5-r0-c2",
+      "channel": 11
+    },
+    {
+      "column_id": "L0.5-r0-c3",
+      "channel": 15
+    },
+    {
+      "column_id": "L0.5-r1-c0",
+      "channel": 2
+    },
+    {
+      "column_id": "L0.5-r1-c1",
+      "channel": 6
+    },
+    {
+      "column_id": "L0.5-r1-c2",
+      "channel": 10
+    },
+    {
+      "column_id": "L0.5-r1-c3",
+      "channel": 14
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorldBlocks · Choose your world</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/portal/style.css">
+  <script type="module" src="/portal/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">⬡ WORLDBLOCKS</a>
+    <div class="toolbar"><span id="hardware-status" role="status"><i></i>Checking connection</span><button id="setup-button">Hardware settings</button></div>
+  </header>
+  <main id="home">
+    <section class="collection"><div class="section-title"><h2>CHOOSE A WORLD</h2><span>00 — 05</span></div><div id="demo-grid" class="demo-grid"></div></section>
+  </main>
+  <section id="experience" hidden>
+    <div class="experience-bar"><a href="/">← All worlds</a><strong id="experience-title"></strong><span id="experience-note"></span><a id="open-separately" target="_blank" rel="noopener">Open separately ↗</a></div>
+    <iframe id="demo-frame" title="WorldBlocks demo" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+    <p id="frame-error" role="alert" hidden></p>
+  </section>
+  <dialog id="setup-dialog">
+    <form id="setup-form">
+      <div class="dialog-heading"><div><p class="eyebrow">PHYSICAL CONNECTION</p><h2>CONNECT YOUR BLOCKS.</h2></div><button type="button" id="close-setup" aria-label="Close settings">✕</button></div>
+      <p>Settings stay on this computer. Keep the boards empty when changing their number or layout.</p>
+      <div class="fields"><label>Number of boards<select id="module-count" required><option value="">Choose a count</option><option>1</option><option>2</option><option>4</option><option>6</option><option>8</option></select></label><label>Boards per row<select id="grid-cols" required><option value="">Choose a count first</option></select></label></div>
+      <label>Board order — left to right, then top to bottom<input id="slots" required placeholder="For example: A0,A1"></label>
+      <label>USB device<select id="serial-port"><option value="auto">Auto-detect a single device</option></select></label><small id="port-help">The device list updates when you connect USB.</small>
+      <fieldset><legend>C0–C5 · Element meanings</legend><p>Check these meanings against the labels on your blocks. Terrain, Basic and Town share this mapping.</p><div id="code-map" class="code-map"></div></fieldset>
+      <label class="confirmation"><input id="confirmed" type="checkbox" required>I have checked the board layout and all six element meanings.</label>
+      <p id="setup-message" role="status"></p><button type="submit" class="primary">Save & connect ↗</button>
+    </form>
+  </dialog>
+</body>
+</html>

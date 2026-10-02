@@ -1,0 +1,16 @@
+{
+  "id": "e96-2026-07-19",
+  "version": 1,
+  "units": {
+    "resistance": "ohm",
+    "conductance": "uS"
+  },
+  "codes": [
+    {"id": "C0", "nominal_ohms": 8250, "target_g_us": 121.212121},
+    {"id": "C1", "nominal_ohms": 9760, "target_g_us": 102.459016},
+    {"id": "C2", "nominal_ohms": 12400, "target_g_us": 80.645161},
+    {"id": "C3", "nominal_ohms": 16500, "target_g_us": 60.606061},
+    {"id": "C4", "nominal_ohms": 24900, "target_g_us": 40.160643},
+    {"id": "C5", "nominal_ohms": 49900, "target_g_us": 20.04008}
+  ]
+}
