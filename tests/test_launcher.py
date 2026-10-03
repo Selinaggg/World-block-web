@@ -23,8 +23,8 @@ def settings():
 class ConfigurationTests(unittest.TestCase):
     def test_discovery_includes_six_isolated_demos(self):
         demos = discover_demos()
-        self.assertEqual([d['id'] for d in demos], ['demo0-terrain','demo1-basic','demo2-town','demo3-particle','demo4-architecture','demo5-creature'])
-        self.assertEqual(sum(d['status']=='ready' for d in demos), 4)
+        self.assertEqual([d['id'] for d in demos], ['demo0-terrain','demo1-basic','demo2-town','demo3-particle','demo4-ocean','demo5-architecture'])
+        self.assertEqual(sum(d['status']=='ready' for d in demos), 6)
         self.assertEqual(demos[3]['entry'], '/dream.html')
         self.assertEqual(demos[3]['hardware'], 'pending')
 
@@ -85,8 +85,9 @@ class PortalTests(unittest.TestCase):
                 thread.start()
                 try:
                     entry = demo['entry'].split('#')[0] or '/'
-                    with urlopen(f'http://127.0.0.1:{server.server_port}{entry}') as response:
+                    with urlopen(f'http://127.0.0.1:{server.server_port}{entry}?_wb=refresh-check') as response:
                         page = response.read().decode()
+                        self.assertEqual(response.headers.get('Cache-Control'), 'no-store')
                     self.assertEqual('/__hub/bridge.mjs' in page, demo['id'] in ('demo1-basic','demo2-town'))
                 finally:
                     server.shutdown(); server.server_close(); thread.join()

@@ -8,7 +8,7 @@ import { visibleLayers, topVisibleUnit } from '../src/terrainRules.js';
 
 const hash = text => createHash('sha256').update(text).digest('hex');
 
-test('original terrain generation and block geometry are preserved except the requested background', () => {
+test('original terrain generation and block geometry are preserved except the requested background, planet surface and atmosphere', () => {
   const manifest = JSON.parse(readFileSync(new URL('../../source-hashes.json', import.meta.url)));
   for (const [name, expected] of Object.entries(manifest)) {
     let text = readFileSync(new URL('../src/' + name, import.meta.url), 'utf8');
@@ -16,6 +16,23 @@ test('original terrain generation and block geometry are preserved except the re
       .replace('dark ? "#080808" : "#12aeb7"', '"#12aeb7"')
       .replace('dark ? "#080808" : "#12aeb7"', '"#12aeb7"')
       .replace('dark ? "#080808" : "#12b9bd"', '"#12b9bd"');
+    if (name === 'TerrainScene.jsx') text = text
+      .replace('import { createPlanetSurface } from "./planetSurface.js";\n', '')
+      .replace('  const planetRef = useRef(null);\n', '')
+      .replace('    planetRef.current?.userData.setFootprint(occupiedPositioned.length ? occupiedPositioned : positioned);\n', '')
+      .replace('    const floor = createPlanetSurface(SEA_LEVEL);\n    planetRef.current = floor;\n', `    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(90, 90, 1, 1),
+      makeSurfaceMat("#12b9bd", 0.58, 1)
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = SEA_LEVEL;
+    floor.receiveShadow = true;
+`);
+    if (name === 'TerrainScene.jsx') text = text
+      .replace('import { createAtmosphere } from "./atmosphere.js";\n', '')
+      .replace('      atmosphere.tick();\n', '')
+      .replace('      atmosphere.dispose();\n', '')
+      .replace('    const atmosphere = createAtmosphere(scene, renderer);\n\n', '    scene.add(new THREE.HemisphereLight("#fff7e4", "#0e8f99", 2.35));\n    const sun = new THREE.DirectionalLight("#ffffff", 3.1);\n    sun.position.set(5.5, 9, 6);\n    sun.castShadow = true;\n    sun.shadow.mapSize.set(2048, 2048);\n    scene.add(sun);\n    const coolFill = new THREE.DirectionalLight("#d0e6ff", 0.78);\n    coolFill.position.set(-5, 3, -4);\n    scene.add(coolFill);\n\n');
     if (name === 'LiveBoardScene.jsx') text = text.replace('new THREE.Color("#111111")', 'new THREE.Color("#ecebe7")');
     assert.equal(hash(text), expected, name);
   }

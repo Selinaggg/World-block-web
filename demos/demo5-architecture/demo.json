@@ -1,0 +1,11 @@
+{
+  "id": "demo5-architecture",
+  "title": "Architecture",
+  "description": "Small spaces, shared lives. A city shaped by connection.",
+  "order": 5,
+  "status": "ready",
+  "hardware": "available",
+  "root": "worldblocks",
+  "entry": "/",
+  "port": 5195
+}

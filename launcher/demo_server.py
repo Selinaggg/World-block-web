@@ -19,6 +19,14 @@ def integrated_handler(project, hub_port):
     original = app.make_handler()
 
     class Handler(original):
+        def end_headers(self):
+            # HTML entry points change on every rebuild; hashed assets can keep
+            # their normal cache behavior. This also covers standalone visits.
+            route = urlsplit(self.path).path
+            if route == '/' or route.endswith(('.html', '.htm')):
+                self.send_header('Cache-Control', 'no-store')
+            super().end_headers()
+
         def bytes_response(self, payload, content_type, status=200):
             self.send_response(status)
             self.send_header('Content-Type', content_type)

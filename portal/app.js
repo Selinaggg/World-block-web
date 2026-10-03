@@ -24,7 +24,11 @@ function renderRoute(){
   if(!activeDemo)return;
   $('#experience-title').textContent=activeDemo.id;
   $('#experience-note').textContent=activeDemo.hardware==='available'?'Physical input · Confirm hardware settings before first use':'Dreamscape · Manual input';
-  const url=`http://127.0.0.1:${activeDemo.port}${activeDemo.entry}`;
+  // A parent-page refresh must also fetch the current iframe entry document.
+  // Keep hash routes and any existing query parameters intact.
+  const entryUrl=new URL(activeDemo.entry,`http://127.0.0.1:${activeDemo.port}`);
+  entryUrl.searchParams.set('_wb',String(Date.now()));
+  const url=entryUrl.href;
   $('#demo-frame').src=url;$('#demo-frame').title=activeDemo.title;$('#open-separately').href=url;
 }
 function updateColumns(value){

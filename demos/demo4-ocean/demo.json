@@ -1,0 +1,11 @@
+{
+  "id": "demo4-ocean",
+  "title": "Ocean",
+  "description": "Build a habitat. Let its hidden life unfold.",
+  "order": 4,
+  "status": "ready",
+  "hardware": "available",
+  "root": "worldblocks",
+  "entry": "/",
+  "port": 5194
+}

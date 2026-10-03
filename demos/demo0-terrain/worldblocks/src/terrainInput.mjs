@@ -4,9 +4,20 @@ import { FALLBACK_TOPOLOGY, UNIT_RULES } from './terrainRules.js';
 export const DEFAULT_MAP = Object.freeze({ C0: 'earth', C1: 'fire', C2: 'animal', C3: 'human', C4: 'water', C5: 'support' });
 export const CODEBOOK = { codes: Object.keys(DEFAULT_MAP).map((id, index) => ({ id, unit: `type_${index}` })) };
 
+export const TEST_PORTS=Array.from({length:8},(_,i)=>`A${i}`);
+export const TEST_TOPOLOGY={...FALLBACK_TOPOLOGY,module_count:8,tracking_capacity:128,
+  layers:FALLBACK_TOPOLOGY.layers.map(layer=>({...layer,rows:16})),
+  columns:TEST_PORTS.flatMap((port,module)=>FALLBACK_TOPOLOGY.columns.map(c=>({...c,
+    id:`${c.layer}-r${module*2+c.row}-c${c.col}`,row:module*2+c.row,module,port})))
+};
+export function layoutTestBoard(raw,cols){
+  if(![1,2,4,8].includes(cols))return raw;
+  return {...raw,module_layout:{...raw.module_layout,grid_cols:cols,grid_rows:8/cols}};
+}
+
 export function emptyTestSnapshot() {
-  return { connected: true, topology: FALLBACK_TOPOLOGY, board: {}, codebook: CODEBOOK,
-    module_layout: { module_count: 1, grid_rows: 1, grid_cols: 1, slots: ['A0'] }, active_faults: {}, detections: [] };
+  return { connected: true, topology: TEST_TOPOLOGY, board: {}, codebook: CODEBOOK,
+    module_layout: { module_count: 8, grid_rows: 4, grid_cols: 2, slots: TEST_PORTS }, active_faults: {}, detections: [] };
 }
 
 export function toTerrainSnapshot(raw, codeMap, previous = null) {
@@ -54,7 +65,7 @@ export function sampleTestSnapshot() {
     ['C0', 'C3'], ['C0', 'C4'], ['C2'], ['C1', 'C3']
   ];
   return { ...raw, board: Object.fromEntries(raw.topology.columns.map((c, i) =>
-    [c.id, stacks[i].map(code => CODEBOOK.codes.find(item => item.id === code).unit)])) };
+    [c.id, (stacks[i]||[]).map(code => CODEBOOK.codes.find(item => item.id === code).unit)])) };
 }
 
 // SSE starts with a full snapshot and sends full heartbeats. No parallel GET

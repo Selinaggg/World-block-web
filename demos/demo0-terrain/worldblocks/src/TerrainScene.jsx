@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import Delaunator from "delaunator";
+import { createAtmosphere } from "./atmosphere.js";
+import { createPlanetSurface } from "./planetSurface.js";
 import { displayCoordinate, normalizeLayout } from "./layout.js";
 import { FALLBACK_TOPOLOGY, ruleForUnit, topVisibleUnit, visibleLayers } from "./terrainRules.js";
 
@@ -2305,6 +2307,7 @@ export default function TerrainScene({ snapshot, latestColumnId, dark = false })
   const rendererRef = useRef(null);
   const cameraRef = useRef(null);
   const terrainRef = useRef(null);
+  const planetRef = useRef(null);
   const cameraTargetRef = useRef(new THREE.Vector3(0, 0.7, 0));
   const orbitRef = useRef({ azimuth: 0.62, elevation: 0.58, radius: 9.4 });
   const dragRef = useRef(null);
@@ -2348,23 +2351,10 @@ export default function TerrainScene({ snapshot, latestColumnId, dark = false })
     rendererRef.current = renderer;
     mount.appendChild(renderer.domElement);
 
-    scene.add(new THREE.HemisphereLight("#fff7e4", "#0e8f99", 2.35));
-    const sun = new THREE.DirectionalLight("#ffffff", 3.1);
-    sun.position.set(5.5, 9, 6);
-    sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
-    scene.add(sun);
-    const coolFill = new THREE.DirectionalLight("#d0e6ff", 0.78);
-    coolFill.position.set(-5, 3, -4);
-    scene.add(coolFill);
+    const atmosphere = createAtmosphere(scene, renderer);
 
-    const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(90, 90, 1, 1),
-      makeSurfaceMat(dark ? "#080808" : "#12b9bd", 0.58, 1)
-    );
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = SEA_LEVEL;
-    floor.receiveShadow = true;
+    const floor = createPlanetSurface(SEA_LEVEL);
+    planetRef.current = floor;
     scene.add(floor);
 
     const terrain = new THREE.Group();
@@ -2383,6 +2373,7 @@ export default function TerrainScene({ snapshot, latestColumnId, dark = false })
     let frame = 0;
     function render() {
       frame = requestAnimationFrame(render);
+      atmosphere.tick();
       renderer.render(scene, camera);
     }
     render();
@@ -2392,6 +2383,7 @@ export default function TerrainScene({ snapshot, latestColumnId, dark = false })
       window.removeEventListener("resize", resize);
       clearGroup(terrain);
       disposeObject(floor);
+      atmosphere.dispose();
       renderer.renderLists.dispose();
       renderer.dispose();
       if (renderer.domElement.parentNode === mount) {
@@ -2429,6 +2421,7 @@ export default function TerrainScene({ snapshot, latestColumnId, dark = false })
       const stack = board[item.column.id] || [];
       return visibleLayers(stack).length > 0;
     });
+    planetRef.current?.userData.setFootprint(occupiedPositioned.length ? occupiedPositioned : positioned);
     const faultedColumns = new Set(Object.keys(activeFaults));
 
     const terrainClusters = connectedClusters(
