@@ -1,9 +1,9 @@
 import {loadWorldBlocksModel} from '../model/loadWorldBlocksModel.js';
 import {WorldScene} from '../components/WorldScene.js';
 import {createWorldStore} from '../world/worldStore.js';
-import {WebInputAdapter} from '../input/WebInputAdapter.js';
+import {DreamInputAdapter} from './DreamInputAdapter.js';
 import {bindPressAndHold} from '../components/pressAndHold.js';
-import {DREAM_ELEMENTS as E,DREAM_TYPES as TYPES} from './config.js';
+import {DREAM_CONFIG,DREAM_ELEMENTS as E,DREAM_TYPES as TYPES,migrateDreamDraft} from './config.js';
 import {DREAM_PRESETS,createDreamPreset} from './presets.js';
 import {DreamScene} from './DreamScene.js';
 const $=s=>document.querySelector(s),empty=()=>({version:1,mode:'dreamscape',inputMode:'web',blocks:[]});
@@ -15,7 +15,7 @@ function select(id){stopHold();selected=id||null;modelScene.setSelected(selected
 function renderInspector(){
  const b=store.getWorldState().blocks.find(b=>b.id===selected);$('#empty-inspector').hidden=!!b;$('#selected-inspector').hidden=!b;if(!b)return;
  $('#fragment-title').textContent=E[b.type].label;$('#fragment-type').value=b.type;$('#intensity').textContent=b.heightLevel;
- $('[data-action=lower]').disabled=busy||b.heightLevel<=1;$('[data-action=raise]').disabled=busy||b.heightLevel>=model.metadata.maxHeight;
+ $('[data-action=lower]').disabled=busy||b.heightLevel<=input.minimumHeight(b.id);$('[data-action=raise]').disabled=busy||b.heightLevel>=model.metadata.maxHeight;
 }
 function render(){
  const state=store.getWorldState(),count=state.blocks.length;
@@ -27,7 +27,7 @@ function render(){
  $('#forces').querySelectorAll('button').forEach(b=>b.disabled=busy);$('#view-overview').disabled=!result||busy;$('#enter-dream').disabled=!result||busy;
  $('#view-arrange').disabled=busy;$('#restore-draft').hidden=!backup;$('#restore-draft').disabled=busy;
  $('#reset-view').disabled=busy;$('#fragment-type').disabled=busy;
- renderInspector();try{localStorage.setItem('worldblocks-dream-draft',JSON.stringify(state));}catch{}
+ renderInspector();try{localStorage.setItem('worldblocks-dream-v2-draft',JSON.stringify(state));}catch{}
 }
 function setView(next){
  if(busy)return;stopHold();if(next==='overview'&&!result)return;
@@ -52,27 +52,27 @@ function step(action){
 }
 function finishReveal(p){
  if(!busy||!result)return;
- const stages=['Gathering fragments','Forming paths','Remembering space','Distorting the edges','Revealing the dream'];
+ const stages=['Building the shell','Growing connections','Grafting the impossible','Lighting the dream','Revealing architecture'];
  $('#status').textContent=stages[Math.min(4,Math.floor(p*5))]+'…';
  if(p===1){busy=false;input.setLocked(false);document.body.classList.remove('busy');setView('overview');}
 }
 async function generate(){
  if(busy||!store.getWorldState().blocks.length)return;
- busy=true;input.setLocked(true);stopHold();document.body.classList.add('busy');render();error('');$('#status').textContent='Reading your dream…';
+ busy=true;input.setLocked(true);stopHold();document.body.classList.add('busy');render();error('');$('#status').textContent='Reading the arrangement…';
  const token=++generationId,snapshot=store.snapshot();
  try{
    const next=await new Promise((resolve,reject)=>{
      worker?.terminate();worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
      worker.onmessage=({data})=>data.error?reject(new Error(data.error)):resolve(data.result);
      worker.onerror=e=>reject(new Error(e.message||'The dream could not form. Please try again.'));
-     worker.postMessage({worldState:snapshot,metadata:model.metadata,options:{budget:innerWidth<700?72000:125000}});
+     worker.postMessage({worldState:snapshot,metadata:model.metadata,options:{budget:innerWidth<700?DREAM_CONFIG.mobileParticles:DREAM_CONFIG.maxParticles}});
    });
    if(token!==generationId)return;worker.terminate();worker=null;
    if(!dreamScene)dreamScene=new DreamScene($('#dream-output'),{onChange:onExploreChange,onReveal:finishReveal});
    result=next;view='overview';document.body.dataset.view='overview';$('#dream-model').hidden=true;$('#dream-output').hidden=false;
    $('#dream-details').hidden=false;$('#dream-number').textContent=`DREAM / ${result.seed.toString(16).toUpperCase().padStart(8,'0')}`;
    $('#explanations').replaceChildren(...result.explanations.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-   $('#debug').hidden=!debug;$('#debug-data').textContent=JSON.stringify({seed:result.seed,particles:result.particleConfig,fields:result.fieldData.peaks,nodes:result.structuralPlan.nodes.map(n=>({id:n.id,x:n.x,z:n.z,fracture:n.fracture,attractor:!!n.isAttractor})),route:result.structuralPlan.route,spawn:result.navigationPlan.spawn},null,2);
+   $('#debug').hidden=!debug;$('#debug-data').textContent=JSON.stringify({seed:result.seed,particles:result.particleConfig,fields:result.fieldData.peaks,architecture:result.structuralPlan.objects.map(o=>({kind:o.kind,force:o.force,walkable:o.walkable})),combinations:result.structuralPlan.relationships.zones,pairs:result.structuralPlan.relationships.pairs,route:result.structuralPlan.route,spawn:result.navigationPlan.spawn},null,2);
    $('#field-view').value='';$('#generate').hidden=true;$('#edit').hidden=true;$('#reset-view').disabled=true;
    $('#scene-note').textContent='Fragments are finding their place.';dreamScene.resize();dreamScene.setWorld(result);
    $('#view-arrange').setAttribute('aria-pressed','false');$('#view-overview').setAttribute('aria-pressed','true');
@@ -81,11 +81,11 @@ async function generate(){
 async function boot(){
  try{
    model=await loadWorldBlocksModel();let initial=empty();
-   try{const saved=JSON.parse(localStorage.getItem('worldblocks-dream-draft'));if(saved?.mode==='dreamscape'&&saved.inputMode==='web')initial=createWorldStore(saved).snapshot();}catch{}
-   store=createWorldStore(initial);input=new WebInputAdapter(store,model.metadata,model.initialBlocks[0],{types:TYPES});
+   try{const saved=migrateDreamDraft(JSON.parse(localStorage.getItem('worldblocks-dream-v2-draft')||localStorage.getItem('worldblocks-dream-draft')));if(saved?.mode==='dreamscape'&&saved.inputMode==='web')initial=createWorldStore(saved).snapshot();}catch{}
+   store=createWorldStore(initial);input=new DreamInputAdapter(store,model.metadata,model.initialBlocks[0],{types:TYPES});
    modelScene=new WorldScene($('#dream-model'),model,{elements:E,idleMotion:false,select,move:(id,p)=>safe(()=>input.move(id,p))});
    $('#loading').remove();
-   $('#forces').innerHTML=TYPES.map(t=>`<button data-force="${t}" style="--force:${E[t].color}" aria-label="Add ${E[t].label}" title="${E[t].meaning}"><i class="force-dot" aria-hidden="true"></i><span>${E[t].label}</span><span aria-hidden="true">+</span></button>`).join('');
+   $('#forces').innerHTML=TYPES.map(t=>`<button data-force="${t}" style="--force:${E[t].color}" aria-label="Add ${E[t].label}" title="${E[t].meaning}"><i class="force-dot" aria-hidden="true"></i><span><small>${E[t].code}</small> ${E[t].label}</span><span aria-hidden="true">+</span></button>`).join('');
    $('#fragment-type').replaceChildren(...TYPES.map(t=>new Option(E[t].label,t)));
    $('#example-select').replaceChildren(...DREAM_PRESETS.map(p=>new Option(p.label,p.id)));$('#example-description').textContent=DREAM_PRESETS[0].description;
    $('#example-select').onchange=e=>$('#example-description').textContent=DREAM_PRESETS.find(p=>p.id===e.target.value).description;

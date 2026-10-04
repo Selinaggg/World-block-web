@@ -1,11 +1,15 @@
 import {nearestSeat,settleColumn} from '../input/gridPlacement.js';
+const shell=[['shell',.37,.64,3],['shell',.67,.37,2]];
 export const DREAM_PRESETS=[
- {id:'remember',label:'01 · A place remembered',description:'Anchor + Memory',forces:[['anchor',.2,.76,2],['memory',.34,.52,3],['memory',.64,.35,2],['anchor',.8,.2,2]]},
- {id:'feeling',label:'02 · The colour of a memory',description:'Memory + Emotion',forces:[['memory',.2,.75,2],['memory',.55,.45,3],['emotion',.57,.55,4],['emotion',.8,.2,2]]},
- {id:'fracture',label:'03 · A room coming apart',description:'Memory + Fear',forces:[['memory',.2,.75,3],['memory',.5,.5,3],['fear',.52,.48,4],['fear',.8,.25,2]]},
- {id:'light',label:'04 · Follow the light',description:'Anchor + Desire',forces:[['anchor',.2,.8,3],['anchor',.45,.55,2],['desire',.75,.2,4]]},
- {id:'edge',label:'05 · Beyond the fracture',description:'Fear + Desire',forces:[['fear',.2,.75,3],['fear',.48,.5,4],['desire',.8,.2,4]]},
- {id:'dream',label:'06 · Between waking and dreaming',description:'All five forces',forces:[['anchor',.2,.8,2],['memory',.32,.55,3],['emotion',.5,.48,2],['fear',.72,.4,2],['desire',.8,.16,3]]},
+ {id:'shell',label:'A · The open shell',description:'Shell: layered rooms, open arches and inhabited stairs.',forces:shell},
+ {id:'veil',label:'B · A room wearing a veil',description:'Shell + Veil: a suspended skin follows the architecture.',forces:[...shell,['veil',.44,.55,3]]},
+ {id:'drift',label:'C · The room comes loose',description:'Shell + Drift: recognizable windows and doors drift together.',forces:[...shell,['drift',.44,.55,3]]},
+ {id:'graft',label:'D · The impossible annex',description:'Shell + Graft: rooms tilt, arcades invert, stairs lead nowhere.',forces:[...shell,['graft',.44,.55,3]]},
+ {id:'glow',label:'E · Light inside the room',description:'Shell + Glow: embedded luminous rooms become destinations.',forces:[...shell,['glow',.44,.55,3]]},
+ {id:'flow',label:'F · A passage through rooms',description:'Shell + Flow: circulation extends toward a new threshold.',forces:[...shell,['flow',.53,.52,2],['flow',.82,.2,3]]},
+ {id:'circulation',label:'G · The impossible journey',description:'Shell + Graft + Flow: stairs, a suspended bridge and an impossible room.',forces:[...shell,['graft',.46,.5,3],['flow',.57,.56,3]]},
+ {id:'chamber',label:'H · The living chamber',description:'Shell + Veil + Glow: a softly breathing luminous interior.',forces:[...shell,['veil',.44,.55,3],['glow',.56,.47,3]]},
+ {id:'dream',label:'I · Architecture of a dream',description:'All six forces form a layered, suspended dream. Enter to explore its rooms.',forces:[...shell,['veil',.43,.57,3],['drift',.62,.57,2],['graft',.45,.43,3],['glow',.61,.38,3],['flow',.56,.57,2]]},
 ];
 export function createDreamPreset(id,metadata,template){
  const preset=DREAM_PRESETS.find(p=>p.id===id);if(!preset)throw new Error('Unknown dream example.');const {bounds}=metadata;let blocks=[];

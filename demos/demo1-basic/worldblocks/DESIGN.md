@@ -1,3 +1,7 @@
+# Hardware-first review (2026-10-04)
+
+The new hardware.html entry defaults to live physical input. An optional side panel holds a separate simulated test board, matching demos 00, 04 and 05. Local 3D regenerates on input changes; paid image/video generation never starts from snapshots. The original free-placement editor remains accessible. Preserve each demo’s existing visual style and procedural generator. This is a review worktree, pending approval before replacing the main project.
+
 # WorldBlocks design
 
 A researcher demonstrates a tactile sculpture in a full-screen exhibition workspace. The user’s 30 September reference establishes a near-black, minimal, futuristic editorial direction, superseding the original light studio presentation.

@@ -54,7 +54,20 @@ export function prepareWorldBlocksModel(root, config = MODEL_CONFIG) {
   const placementGeometry=geometries.values().next().value;
   placementGeometry.computeBoundingBox();
   const placementStackStep=placementGeometry.boundingBox.max.y-placementGeometry.boundingBox.min.y;
-  const metadata = {baseSeats,bounds,diameter,moduleHeight,stackStep,placementStackStep,firstCenterY,baseSurfaceY:baseBounds.max.y,maxHeight:config.maxHeight,sourceScale:scale};
+  // Projection widths of the real template define contact, including the eight
+  // sloping faces used by four-module interstitial supports.
+  const positions=placementGeometry.attributes.position,normals=placementGeometry.attributes.normal,planeMap=new Map();
+  for(let i=0;i<normals.count;i++){
+    let normal=new THREE.Vector3().fromBufferAttribute(normals,i).normalize();
+    const first=[normal.x,normal.y,normal.z].find(v=>Math.abs(v)>.00001);if(first<0)normal.negate();
+    const key=normal.toArray().map(v=>v.toFixed(4)).join(':');if(planeMap.has(key))continue;
+    let min=Infinity,max=-Infinity;
+    for(let j=0;j<positions.count;j++){const projection=normal.x*positions.getX(j)+normal.y*positions.getY(j)+normal.z*positions.getZ(j);min=Math.min(min,projection);max=Math.max(max,projection);}
+    planeMap.set(key,{x:normal.x,y:normal.y,z:normal.z,span:max-min});
+  }
+  // Retain both signs for the upward-contact calculation; SAT uses either sign.
+  const moduleContactPlanes=[...planeMap.values()].flatMap(p=>[p,{x:-p.x,y:-p.y,z:-p.z,span:p.span}]);
+  const metadata = {moduleContactPlanes,baseSeats,bounds,diameter,moduleHeight,stackStep,placementStackStep,firstCenterY,baseSurfaceY:baseBounds.max.y,maxHeight:config.maxHeight,sourceScale:scale};
   const diagnostics = { source:config.url, sourceUp:config.sourceUp, moduleCount:modules.length, baseCount:bases.length,
     hierarchy: root.children.map(o => ({name:o.name,type:o.type,children:o.children.length})),
     objects:[...bases,...modules].map(i=>({name:i.object.name,kind:bases.includes(i)?'base':'module',size:i.size.toArray(),min:i.bounds.min.toArray(),max:i.bounds.max.toArray()})),metadata};

@@ -7,3 +7,16 @@
 @media(max-width:700px){body{height:auto;min-height:100dvh;overflow:auto}header{height:74px;gap:10px;padding:0 16px}.wordmark{font-size:15px}nav{font-size:10px}nav a,nav span{padding:8px 10px}#full-screen{display:none}.spatial-canvas{position:fixed;inset:150px 0 auto;height:43dvh}.view-switch{top:85px;width:max-content}.arrange-rail{position:relative;top:auto;left:auto;width:auto;margin:calc(43dvh + 172px) 16px 0;max-height:none;padding:0;overflow:visible}.arrange-rail>.eyebrow,.arrange-rail h1,.arrange-rail .intro{display:none}#forces{display:flex;flex-wrap:wrap;gap:6px;margin:0}#forces button{font-size:12px;gap:7px;padding:8px 12px}.arrange-rail label{margin-top:18px}#examples{margin-top:10px}.inspector{position:relative;right:auto;top:auto;width:auto;margin:12px 16px 0}.empty-title{font-size:22px;margin:12px 0}.control-label{margin-top:15px}#empty-inspector{display:none}.directions{justify-content:start;gap:12px}footer{position:relative!important;padding:16px;flex-wrap:wrap;margin-top:15px}.footer-actions{flex-wrap:wrap}.scene-note{display:none}.result-details{top:155px;right:16px;width:185px}body[data-view=overview] #dream-output{inset:0;height:100dvh}body[data-view=overview] footer{position:fixed!important;bottom:0}.footer-status{max-width:100%}#explore-help{bottom:20px;left:16px;right:16px;flex-wrap:wrap;font-size:10px}#explore-help>span{max-width:56%}.touch-movement{display:flex;width:100%;justify-content:center;gap:10px}.touch-movement button{width:46px;height:46px;padding:0;font-size:20px}body.exploring,body.immersive{height:100dvh;overflow:hidden}#show-controls{bottom:16px;right:16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 @media(min-width:701px){body[data-view=arrange]::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#030408bb,transparent 26%,transparent 72%,#030408df)}}
+
+/* Six forces retain the compact, single-screen editor. */
+#forces button small{font:9px ui-monospace,monospace;color:var(--muted);margin-right:6px}
+@media(min-width:701px){.arrange-rail{top:112px}.arrange-rail h1{margin:10px 0}.intro{font-size:13px}#forces{margin-top:18px;gap:4px}#forces button{min-height:36px;padding:8px 13px}.arrange-rail label{margin-top:15px}.arrange-rail select{padding:9px 12px}#examples{margin-top:9px}}
+@media(min-width:701px){
+ .arrange-rail:has(#examples[open]) #forces{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+ .arrange-rail:has(#examples[open]) #forces button{padding:7px 8px;gap:6px;font-size:11px}
+ .arrange-rail:has(#examples[open]) #forces small{display:none}
+ .arrange-rail:has(#examples[open]) #forces .force-dot{width:9px;height:9px}
+ .arrange-rail:has(#examples[open]) .intro{display:none}
+ #examples[open] .tiny{font-size:11px;line-height:1.45}
+ #examples[open] button{min-height:32px;padding:7px 12px}
+}

@@ -31,8 +31,8 @@ export class DreamExploreController{
     if(!this.nav||this.active)return;
     const damping=this.controls.enableDamping;this.controls.enableDamping=false;this.controls.update();this.controls.enableDamping=damping;
     this.saved={position:this.camera.position.clone(),quaternion:this.camera.quaternion.clone(),target:this.controls.target.clone()};
-    this.controls.enabled=false;this.active=true;this.position={x:this.nav.spawn.x,z:this.nav.spawn.z};this.yaw=this.nav.spawn.yaw;this.pitch=0;this.gait=0;
-    this.transitionTo(new THREE.Vector3(this.position.x,C.eyeHeight,this.position.z),new THREE.Quaternion().setFromEuler(new THREE.Euler(0,this.yaw,0,'YXZ')));
+    this.controls.enabled=false;this.active=true;this.position={x:this.nav.spawn.x,y:this.nav.spawn.y,z:this.nav.spawn.z};this.yaw=this.nav.spawn.yaw;this.pitch=0;this.gait=0;
+    this.transitionTo(new THREE.Vector3(this.position.x,C.eyeHeight+this.position.y,this.position.z),new THREE.Quaternion().setFromEuler(new THREE.Euler(0,this.yaw,0,'YXZ')));
     this.onChange();
   }
   transitionTo(position,rotation,done=()=>{}){this.transition={start:performance.now(),duration:matchMedia('(prefers-reduced-motion:reduce)').matches?0:1100,from:this.camera.position.clone(),to:position,fromRotation:this.camera.quaternion.clone(),rotation,done};}
@@ -48,7 +48,7 @@ export class DreamExploreController{
     let d=0;if(l){const amount=dt*(has('ShiftLeft','ShiftRight')?C.fastSpeed:C.walkSpeed)/l,old=this.position;
       this.position=moveInDream(this.nav,old,(-Math.sin(this.yaw)*f+Math.cos(this.yaw)*s)*amount,(-Math.cos(this.yaw)*f-Math.sin(this.yaw)*s)*amount);d=Math.hypot(this.position.x-old.x,this.position.z-old.z);}
     this.gait+=d*7;const weight=reduced?0:Math.min(1,d/Math.max(.001,dt*C.walkSpeed));
-    this.camera.position.set(this.position.x,C.eyeHeight+Math.sin(this.gait*2)*.035*weight,this.position.z);this.camera.rotation.set(this.pitch,this.yaw,Math.sin(this.gait)*.002*weight,'YXZ');
+    this.camera.position.set(this.position.x,C.eyeHeight+this.position.y+Math.sin(this.gait*2)*.055*weight,this.position.z);this.camera.rotation.set(this.pitch,this.yaw,Math.sin(this.gait)*.002*weight,'YXZ');
   }
   dispose(){this.exit(true);this.abort.abort();}
 }

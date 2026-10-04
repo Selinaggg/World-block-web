@@ -1,3 +1,7 @@
+# Hardware-first review (2026-10-04)
+
+The new hardware.html entry defaults to live physical input. An optional side panel holds a separate simulated test board, matching demos 00, 04 and 05. Local 3D regenerates on input changes; paid image/video generation never starts from snapshots. The original free-placement editor remains accessible. Preserve each demo’s existing visual style and procedural generator. This is a review worktree, pending approval before replacing the main project.
+
 # Human Town update (current)
 
 The Human Town request supersedes the generic-island and dark-workspace directions below. The current demo uses a bright, calm tabletop workspace, Human-first settlement planning, separate Generate 2.5D / Generate 3D Town actions, full-viewport 3D canvases behind floating controls, with no input comparison in the town view, concise relationship explanations and five session-local town snapshots. Mobile stacks the views and allows scrolling. The existing OBJ input, physical adapter, 2.5D API pipeline and immersive presentation survive. Homepage keeps its 60%-width right image composition with the new line “Build a town without a blueprint.” See docs/HUMAN-TOWN.md for implementation and limitations.

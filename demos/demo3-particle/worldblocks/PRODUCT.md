@@ -1,3 +1,11 @@
+# Hardware-first review (2026-10-04)
+
+The new hardware.html entry defaults to live physical input. An optional side panel holds a separate simulated test board, matching demos 00, 04 and 05. Local 3D regenerates on input changes; paid image/video generation never starts from snapshots. The original free-placement editor remains accessible. Preserve each demo’s existing visual style and procedural generator. This is a review worktree, pending approval before replacing the main project.
+
+# Dreamscape V2 (current Dreamscape direction)
+
+The six forces Shell / Veil / Drift / Graft / Glow / Flow supersede the five abstract V1 forces for dream.html only. Generate semantic, surreal architecture first: open rooms, cutaway floors, arches, window apertures, connected stairs and suspended impossible additions. Sample it into dense, fine structural particles, brighter edges and sparse atmosphere on the existing near-black background. Following the latest reference, use saturated red/magenta walls against electric-blue floors and circulation, with cyan light and rare cool-white highlights. Preserve visible gaps between fine points rather than making opaque surfaces. For the dim exhibition display, the legible spatial work remains the focus. Near-camera detail reveals structure rather than adding noise. Preserve the OBJ editor and one generated world shared by overview and first-person. See docs/DREAMSCAPE-V2.md for semantics and limits.
+
 # Dreamscape addition (separate demo)
 
 Dreamscape is a separate experience at `dream.html`; the Human Town directions below remain in force for Town. It reuses the imported module editor with Anchor / Memory / Emotion / Desire / Fear, then generates a deterministic, explorable point-cloud environment. Follow the supplied references: fine shimmering particles, near-black void, white spatial traces and selective electric blue, cyan, magenta and red fields. This dark high-contrast direction explicitly supersedes the earlier anti-neon restriction for Dreamscape only. A visitor at a dim exhibition display should see the spatial work first, with sparse pill controls above it. The complete route stays navigable; overview and first-person are views of the same result. No image mockups or AI-generated assets substitute for the actual real-time particles. See docs/DREAMSCAPE.md.

@@ -1,4 +1,4 @@
-const DREAM_TYPES=['anchor','memory','emotion','desire','fear','support','unknown'];
+const DREAM_TYPES=['shell','veil','drift','graft','glow','flow','support','unknown'];
 const TYPES=['water','fire','earth','human','animal','support','unknown'];
 const deepFreeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);Object.values(value).forEach(deepFreeze);}return value;};
 export function validateWorldState(state){

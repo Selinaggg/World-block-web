@@ -26,7 +26,7 @@ export function generateDreamFields(analysis){
   return fields;
 }
 export function sampleFields(fields,x,z){
-  const value={stability:0,structure:0,emotion:0,attraction:0,distortion:0};
+  const value=Object.fromEntries(DREAM_TYPES.map(t=>[t,0]));
   for(const s of fields.sources){const d2=(s.x-x)**2+(s.z-z)**2;value[FIELD_NAMES[s.type]]+=s.strength*Math.exp(-d2/(2*s.radius*s.radius));}
   return value;
 }

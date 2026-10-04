@@ -1,3 +1,5 @@
+> Current implementation: [Dreamscape V2](DREAMSCAPE-V2.md). The notes below describe the original five-force version.
+
 # Dreamscape Demo
 
 Open `http://127.0.0.1:5188/dream.html` with the existing server (`npm run dev`). No build, external service, API key or generation credit is needed. Human Town and the image pipeline remain at the original URL. Home and the town header link to Dreamscape in another tab to preserve the town's live in-memory draft. The `basic demo.zip` and `demo2 town.zip` archives are untouched.

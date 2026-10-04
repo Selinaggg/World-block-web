@@ -1,11 +1,11 @@
 {
   "id": "demo2-town",
   "title": "Town",
-  "description": "Build a settlement. Find your way through its streets.",
+  "description": "Hardware-first experience with an isolated virtual test playground.",
   "order": 2,
   "status": "ready",
   "hardware": "available",
   "root": "worldblocks",
-  "entry": "/#studio",
+  "entry": "/hardware.html",
   "port": 5192
 }

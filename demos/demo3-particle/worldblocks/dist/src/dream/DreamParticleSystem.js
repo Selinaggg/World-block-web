@@ -1,139 +1,100 @@
 import {seededRandom} from '../generation/threeD/random.js';
-import {sampleFields,clamp,distance} from './DreamFieldGenerator.js';
-import {closestOnSegment} from './DreamNavigationPlanner.js';
 import {DREAM_CONFIG} from './config.js';
-
-const PALETTE={white:[.83,.92,1],blue:[.07,.27,1],cyan:[.12,.93,1],pink:[1,.12,.65],red:[1,.025,.12],warm:[1,.84,.53]};
+import {lerp} from './DreamArchitecture.js';
+// Shader attributes are linear; the renderer converts them to display sRGB.
+const linearColor=hex=>hex.match(/[0-9a-f]{2}/gi).map(v=>{const c=parseInt(v,16)/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;});
+const PALETTE=Object.fromEntries(Object.entries({white:'DBF1FF',blue:'2366F5',deepBlue:'1243C1',cyan:'30DEFF',pink:'ED248F',red:'FF175A',warm:'FFC65A'}).map(([key,value])=>[key,linearColor(value)]));
+function horizontal(q){const [a,b,c]=q,u=[b.x-a.x,b.y-a.y,b.z-a.z],v=[c.x-a.x,c.y-a.y,c.z-a.z],n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];return Math.abs(n[1])>Math.hypot(...n)*.75;}
 const mix=(a,b,t)=>a.map((v,i)=>v*(1-t)+b[i]*t);
-/** CPU builds stable geometry once; breathing, jitter, reveal and drift run on GPU. */
-export function buildDreamParticles(plan,fields,seed,{budget=DREAM_CONFIG.maxParticles}={}){
-  const random=seededRandom(seed),layers=Array.from({length:5},()=>[]);
-  function put(x,y,z,kind,f,clarity=1,flow=[0,0,0]){
-    if(!f)f=sampleFields(fields,x,z);
-    const fear=clamp(f.distortion/(1+f.stability*.6),0,3);
-    if(kind===1&&random()>clarity)return;
-    // Fear cuts coherent missing patches into walls, while the centre path survives.
-    if(kind===1&&fear>.45&&Math.sin(x*.9+z*.5)*Math.cos(y*1.5+z*.4)>.67-fear*.13)return;
-    let color=kind===0?PALETTE.blue:PALETTE.white;
-    if(kind===2)color=f.emotion>.1?PALETTE.pink:PALETTE.blue;
-    if(kind===3)color=random()>.87?PALETTE.warm:PALETTE.cyan;
-    if(kind===4)color=PALETTE.red;
-    if(kind<=1){const dominance=Math.max(f.distortion,f.emotion,f.attraction);
-      if(dominance>.3&&random()<clamp(dominance*.32,.1,.8))color=mix(color,dominance===f.distortion?PALETTE.red:dominance===f.emotion?PALETTE.pink:PALETTE.cyan,.93);
-      if(kind===0&&random()<.09+clamp(f.stability*.07,0,.24))color=PALETTE.white;
-    }
-    const brightness=(.48+random()*.65)*(kind===2?.65:1);
-    const jitter=kind===0?.012:(.017+fear*.07+clamp(f.emotion,0,3)*.013)/(1+f.stability*.5);
-    const pulse=kind===2?.5:clamp(f.emotion*.13,.035,.28);
-    layers[kind].push([x,y,z,...color.map(c=>c*brightness),jitter,pulse,random()*Math.PI*2,kind,...flow]);
+const length=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
+function area(q){const tri=(a,b,c)=>{const u=[b.x-a.x,b.y-a.y,b.z-a.z],v=[c.x-a.x,c.y-a.y,c.z-a.z];return Math.hypot(u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0])*.5;};return tri(q[0],q[1],q[2])+tri(q[0],q[2],q[3]);}
+function weighted(items){let total=0;return {items:items.map(i=>({...i,end:total+=i.weight})),total};}
+function choose(table,r){let lo=0,hi=table.items.length-1,target=r*table.total;while(lo<hi){const m=(lo+hi)>>1;if(target<table.items[m].end)hi=m;else lo=m+1;}return table.items[lo];}
+/** Geometry is resolved first. Sampling only interprets its semantic surfaces. */
+export function buildDreamParticles(plan,fields,seed,{budget=DREAM_CONFIG.maxParticles,lod={}}={}){
+  const random=seededRandom(seed^0x73891),settings={...DREAM_CONFIG.lod,...lod};
+  budget=Math.max(300,Math.min(DREAM_CONFIG.maxParticles,Math.floor(budget)));
+  const surfaces=[],edges=[];
+  for(const o of plan.objects){
+    const floorY=Math.min(...o.surfaces.flat().map(p=>p.y));
+    for(const q of o.surfaces){const weight=area(q)*(o.force==='veil'?.6:1);if(weight>.0001)surfaces.push({o,q,weight,horizontal:horizontal(q)});}
+    for(const l of o.lines)for(let i=1;i<l.length;i++){const weight=length(l[i-1],l[i]);if(weight>.0001)edges.push({o,a:l[i-1],b:l[i],weight,horizontal:Math.max(l[i-1].y,l[i].y)<floorY+.12});}
   }
-  for(const e of plan.edges){
-    const len=distance(e.a,e.b),dx=(e.b.x-e.a.x)/len,dz=(e.b.z-e.a.z)/len;
-    const width=e.width;
-    // Floor is dense enough to navigate, with fine scan-line traces at the edges.
-    const count=Math.ceil(len*(210+e.fields.stability*45));
-    for(let i=0;i<count;i++){const t=random()*len,l=(random()*2-1)*width,x=e.a.x+dx*t-dz*l,z=e.a.z+dz*t+dx*l;
-      put(x,(random()-.5)*.045,z,0);
-    }
-    const wallCount=Math.ceil(len*(140+clamp(e.fields.structure,0,4)*65));
-    for(let i=0;i<wallCount;i++){
-      const t=random()*len,y=random()*e.height,side=random()<.5?-1:1,l=width*side;
-      const x=e.a.x+dx*t-dz*l,z=e.a.z+dz*t+dx*l;
-      const f=sampleFields(fields,x,z),clarity=clamp(.18+f.structure*.18+f.stability*.1-f.distortion*.07,.1,.9);
-      if(random()<.84)put(x,y,z,1,f,clarity);
-      else put(e.a.x+dx*t-dz*(random()*2-1)*width,e.height+(random()-.5)*.04,e.a.z+dz*t+dx*(random()*2-1)*width,1,f,clarity*.7);
-    }
-    // Repeated incomplete thresholds give a strong perspective in first person.
-    for(let t=.8;t<len;t+=2.1){const f=sampleFields(fields,e.a.x+dx*t,e.a.z+dz*t);
-      for(let j=0;j<200;j++){const q=random(),l=j%3===0?(random()*2-1)*width:(j%3===1?-width:width),y=j%3===0?e.height:q*e.height;
-        put(e.a.x+dx*t-dz*l,y,e.a.z+dz*t+dx*l,1,f,clamp(.45+f.structure*.15-f.distortion*.07,.2,.98));}
-    }
+  const surfaceTable=weighted(surfaces),edgeTable=weighted(edges);
+  const structureCount=Math.floor(budget*.66),edgeCount=Math.floor(budget*.22),atmosphereCount=budget-structureCount-edgeCount;
+  const positions=new Float32Array(budget*3),colors=new Float32Array(budget*3),motion=new Float32Array(budget*4),flow=new Float32Array(budget*3),detail=new Float32Array(budget*4);
+  const kinds={shell:0,veil:1,drift:2,graft:3,glow:4,flow:5};
+  for(let i=0;i<budget;i++){
+    const layer=i<structureCount?0:i<structureCount+edgeCount?1:2;
+    const entry=choose(layer===1?edgeTable:surfaceTable,random()),o=entry.o;
+    let p;if(layer===1)p=lerp(entry.a,entry.b,random());else{const [a,b,c,d]=entry.q,u=random(),v=random();p=lerp(lerp(a,b,u),lerp(d,c,u),v);}
+    // A scan has missing flecks and tiny surface variation, not a volumetric fog.
+    const jitter=layer===2?.28:.006;
+    p.x+=(random()-.5)*jitter;p.y+=(random()-.5)*jitter;p.z+=(random()-.5)*jitter;
+    if(layer===2){p.y+=random()*.7;}
+    // Red/pink walls against blue walking surfaces make the scan readable at a
+    // distance. Force-specific veils, circulation and lights retain their identity.
+    let tint=entry.horizontal?PALETTE.blue:PALETTE.red;
+    if(o.force==='graft')tint=entry.horizontal?PALETTE.deepBlue:PALETTE.pink;
+    else if(o.force==='flow'||o.force==='drift')tint=PALETTE.blue;
+    else if(o.force==='glow')tint=random()<.1?PALETTE.warm:PALETTE.cyan;
+    else if(o.force==='veil')tint=random()<.75?PALETTE.pink:PALETTE.cyan;
+    let col=tint;
+    if(layer===1&&random()<.035)col=mix(tint,PALETTE.white,.65);
+    if(o.luminous&&o.force!=='glow'&&random()<.12)col=PALETTE.cyan;
+    const brightness=layer===1?.92:layer===2?.48:.68+random()*.32;
+    col=col.map(v=>v*brightness);
+    positions.set([p.x,p.y,p.z],i*3);colors.set(col,i*3);
+    motion.set([o.amplitude||.007,o.luminous?.15:.035,o.phase,kinds[o.force]],i*4);
+    flow.set([o.vector?.x||0,Math.min(2,o.vector?.strength||0),o.vector?.z||0],i*3);
+    // Reserve samples become visible nearby without reallocating any geometry.
+    detail.set([layer,layer===0&&random()<settings.reserve?1:0,(layer===2?.84:layer===1?Math.max(.17,o.stage):o.stage),random()],i*4);
   }
-  for(const n of plan.nodes){
-    const r=n.radius,h=n.height,f=n.fields;
-    for(let i=0;i<2400+f.stability*450;i++){const a=random()*Math.PI*2,d=Math.sqrt(random())*r;put(n.x+Math.cos(a)*d,(random()-.5)*.04,n.z+Math.sin(a)*d,0);}
-    const links=plan.edges.filter(e=>e.from===n.id||e.to===n.id);
-    const isOpening=(x,z)=>links.some(e=>distance({x,z},closestOnSegment({x,z},e.a,e.b))<e.width+.18);
-    // Memory rooms have rectilinear wall traces, window recesses, high ribs and stair residue.
-    for(let i=0;i<4200+clamp(f.structure,0,4)*1600;i++){
-      const side=i%4,u=(random()*2-1)*r,y=random()*h;
-      const x=n.x+(side<2?(side?1:-1)*r:u),z=n.z+(side>=2?(side===2?1:-1)*r:u);
-      if(isOpening(x,z)&&y<3.05)continue;
-      if(Math.abs(u)<r*.29&&y>1.3&&y<2.8&&side%2===0)continue;
-      put(x+(random()-.5)*.025,y,z+(random()-.5)*.025,1,f,n.coherence);
-    }
-    if(n.isMemory){
-      for(let rib=-r;rib<=r;rib+=.7)for(let j=0;j<130;j++){
-        const u=(random()*2-1)*r;put(n.x+u,h,n.z+rib,1,f,n.coherence*.8);
-      }
-      for(let step=0;step<7;step++)for(let j=0;j<65;j++)put(n.x+r*.8-random()*.8,step*.12,n.z-r*.85+step*.2+random()*.12,1,f,n.coherence);
-    }
-    // Emotion is a breathing ellipsoidal field, not another solid object.
-    const atmosphere=Math.floor(500+clamp(f.emotion,0,5)*1500);
-    for(let i=0;i<atmosphere;i++){const a=random()*Math.PI*2,v=random()*2-1,d=r*(.65+random()*.7),s=Math.sqrt(1-v*v);
-      put(n.x+Math.cos(a)*s*d,h*.6+v*h*.6,n.z+Math.sin(a)*s*d,2,f);
-    }
-    if(n.isAttractor){
-      // A luminous opening oriented toward the arriving path, with converging traces.
-      const link=links.at(-1),other=link.from===n.id?link.b:link.a,angle=Math.atan2(other.z-n.z,other.x-n.x),ux=-Math.sin(angle),uz=Math.cos(angle);
-      const strength=clamp(f.attraction,0,5),height=3.5+strength*.2,w=1+strength*.12;
-      for(let i=0;i<1200+strength*360;i++){
-        const edge=i%3,t=random(),depth=(random()-.5)*.35;
-        const u=edge===0?(t*2-1)*w:(edge===1?-w:w)+(random()-.5)*.08,y=edge===0?height+(random()-.5)*.07:t*height;
-        put(n.x+ux*u+Math.cos(angle)*depth,y,n.z+uz*u+Math.sin(angle)*depth,3,f);
-      }
-      for(let i=0;i<1300;i++){const u=(random()*2-1)*r,depth=random()*r*1.4;
-        put(n.x+ux*u+Math.cos(angle)*depth,random()*height,n.z+uz*u+Math.sin(angle)*depth,3,f,1,[-Math.cos(angle)*.55,0,-Math.sin(angle)*.55]);}
-    }
-    if(n.fracture>.35){
-      for(let i=0;i<Math.min(6500,n.fracture*1700);i++){
-        const a=random()*Math.PI*2,d=r*(1.02+random()*.38),y=random()*h;
-        if(Math.sin(a*5+y)>-.3)put(n.x+Math.cos(a)*d,y,n.z+Math.sin(a)*d,4,f);
-      }
-    }
-  }
-  const total=layers.reduce((sum,l)=>sum+l.length,0),scale=Math.min(1,budget/total),rows=[],counts=[];
-  layers.forEach((layer,k)=>{const keep=Math.floor(layer.length*scale);counts[k]=keep;for(let i=0;i<keep;i++)rows.push(layer[Math.floor(i*layer.length/keep)]);});
-  const positions=new Float32Array(rows.length*3),colors=new Float32Array(rows.length*3),motion=new Float32Array(rows.length*4),flow=new Float32Array(rows.length*3);
-  rows.forEach((p,i)=>{positions.set(p.slice(0,3),i*3);colors.set(p.slice(3,6),i*3);motion.set(p.slice(6,10),i*4);flow.set(p.slice(10,13),i*3);});
-  return {positions,colors,motion,flow,count:rows.length,layers:Object.fromEntries(['path','structure','atmosphere','attractor','fracture'].map((n,i)=>[n,counts[i]]))};
+  return {positions,colors,motion,flow,detail,count:budget,layers:{structural:structureCount,edges:edgeCount,atmosphere:atmosphereCount},lod:settings};
 }
-
 export const dreamVertexShader=`
 attribute vec3 color;
 attribute vec4 motion;
 attribute vec3 flow;
-uniform float uTime;
-uniform float uReveal;
-uniform float uPixelRatio;
-uniform float uMotion;
-uniform float uScale;
+attribute vec4 detail;
+uniform float uTime, uReveal, uPixelRatio, uMotion, uScale;
+uniform vec4 uLod;
 varying vec3 vColor;
 varying float vAlpha;
 void main(){
- float phase=motion.z;float kind=motion.w;
- float born=kind*.135+fract(phase*7.37)*.23;
- float appear=smoothstep(born,born+.19,uReveal);
+ float kind=motion.w; float t=uTime; float phase=motion.z;
+ float dist=length((modelViewMatrix*vec4(position,1.)).xyz);
+ float nearWeight=1.-smoothstep(uLod.x,uLod.y,dist);
+ float stable=mix(1.,uLod.z,nearWeight);
  vec3 p=position;
- float t=uTime;
- p+=vec3(sin(t*.8+phase+p.z*1.8),cos(t*.65+phase+p.x*1.1),sin(t*.73+phase+p.y*1.5))*motion.x*uMotion;
- p.y+=sin(t*.7+phase*.15)*motion.y*.12*uMotion;
- p+=flow*fract(t*.13+phase)*uMotion;
- p.y+=(1.-appear)*(2.+sin(phase)*1.1);
- p.xz*=1.+(1.-appear)*.065;
- vec4 mv=modelViewMatrix*vec4(p,1.);
- gl_Position=projectionMatrix*mv;
- float size=kind>1.5?1.45:1.05;
- gl_PointSize=clamp(size*uScale/max(1.,-mv.z),.7,2.1)*uPixelRatio;
- vColor=color*(.9+sin(t*1.4+phase)*motion.y*uMotion);
- vAlpha=appear*(.84+.16*sin(phase+t*.6*uMotion));
- vAlpha*=1.-smoothstep(45.,105.,-mv.z);
+ // All samples of a drifting fragment share phase and displacement, preserving
+ // its recognizable shape. Veil alone has position-dependent cloth movement.
+ if(kind>1.5 && kind<2.5){
+   vec3 axis=flow.y>.1?vec3(flow.x,0.,flow.z):vec3(cos(phase),0.,sin(phase));
+   p+=axis*sin(t*.24+phase)*motion.x*uMotion;
+   p.y+=cos(t*.31+phase)*motion.x*.3*uMotion;
+ }else if(kind>.5 && kind<1.5){
+   p.z+=sin(position.x*1.2+t*.42+phase)*motion.x*uMotion;
+   p.x+=sin(position.y*.8+t*.3+phase)*motion.x*.32*uMotion;
+ }else if(kind>2.5 && kind<3.5){p.x+=sin(t*.3+position.y)*motion.x*uMotion;}
+ else{p+=vec3(sin(t*.65+position.y*3.),cos(t*.6+position.x*2.),sin(t*.7+phase))*motion.x*.4*stable*uMotion;}
+ float born=detail.z+detail.w*.07;
+ float appear=smoothstep(born,born+.16,uReveal);
+ vec4 mv=modelViewMatrix*vec4(p,1.);gl_Position=projectionMatrix*mv;
+ float edge=step(.5,detail.x)*(1.-step(1.5,detail.x));
+ float atmosphere=step(1.5,detail.x);
+ gl_PointSize=clamp((.72+edge*.14)*uScale/max(1.,-mv.z),.68,mix(2.05,1.4,nearWeight))*uPixelRatio;
+ vColor=color*(1.+edge*.12+sin(t*.65+phase)*motion.y*uMotion);
+ vAlpha=appear*mix(.73,.96,edge);
+ vAlpha*=mix(1.,nearWeight,detail.y);
+ vAlpha*=mix(1.,mix(.7,uLod.w,nearWeight),atmosphere);
+ vAlpha*=1.-smoothstep(80.,160.,dist);
+ if(kind>4.5)vAlpha*=.72+.28*sin(t*.8-position.x*.5-position.z*.5)*uMotion;
 }`;
 export const dreamFragmentShader=`
 varying vec3 vColor;
 varying float vAlpha;
-void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;
- float edge=1.-smoothstep(.28,.5,d);
- gl_FragColor=vec4(vColor,vAlpha*edge);
+void main(){float d=length(gl_PointCoord-.5);if(d>.5||vAlpha<.005)discard;
+ gl_FragColor=vec4(vColor,vAlpha*(1.-smoothstep(.24,.5,d)));
  #include <colorspace_fragment>
 }`;
